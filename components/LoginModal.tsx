@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Form from "./Modal";
 import { Icon } from "@iconify/react";
 import useLoginModal from "@/hooks/useLoginModal";
 import Modal from "./Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import { signIn, signOut, useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 function LoginModal() {
   const register = useRegisterModal();
@@ -12,6 +14,36 @@ function LoginModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShow, setPasswordShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { data: session, status } = useSession();
+
+  const onSubmit = useCallback(
+    async (e: any) => {
+      e.preventDefault();
+      try {
+        setLoading(true);
+        const result = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
+
+        if (result?.status !== 200) {
+          throw new Error("Invalid Credentials");
+        } else {
+          toast.success("Logged in");
+          setLoading(false);
+          login.loginClose();
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [email, password, login]
+  );
 
   const loginInput = (
     <div className="w-full flex flex-col  p-2 gap-3">
@@ -20,6 +52,7 @@ function LoginModal() {
           type="email"
           className="rrounded-lg p-2 bg-transparent w-full    outline-none"
           placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="rounded-lg flex items-center bg-black/10 focus-within:border-[3.5px] border-transparent border-[3.5px] focus-within:border-cyan-500 duration-150 transition">
@@ -60,23 +93,19 @@ function LoginModal() {
     </div>
   );
 
-  const button = (
-    <button className="bg-teal-300 hover:bg-opacity-70 hover:scale-105 transition duration-150 font-semibold rounded-xl p-2">
-      Login
-    </button>
-  );
-
-  function switchModal() {
+  const switchModal = useCallback(() => {
     login.loginClose();
     register.loginOpen();
-  }
+  }, [login.loginClose, register.loginOpen]);
+
   return (
     <Modal
+      loading={loading}
       loginInput={loginInput}
-      button={button}
       isOpen={login.isOpen}
       loginClose={login.loginClose}
       switchModal={switchModal}
+      onSubmit={onSubmit}
     />
   );
 }

@@ -10,17 +10,7 @@ export default function Home() {
 
   return (
     <main className="">
-      <div
-        onClick={
-          // () =>
-          // signIn("google", {
-          //   redirect: false,
-          // })
-          login.loginOpen
-        }
-      >
-        sign IN
-      </div>
+      <div onClick={login.loginOpen}>sign IN</div>
       <div onClick={() => signOut()}>signOut</div>
     </main>
   );

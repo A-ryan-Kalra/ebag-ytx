@@ -40,7 +40,7 @@ export const authOptions: AuthOptions = {
         }
         const isCorrectPassword = await compare(
           credentials.password,
-          user.hashedPassword
+          user.hashedPassword as string
         );
         if (!isCorrectPassword) {
           throw new Error("Invalid password");

@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Form from "./Modal";
 import { Icon } from "@iconify/react";
-
+import { signIn, signOut, useSession } from "next-auth/react";
 import Modal from "./Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import useLoginModal from "@/hooks/useLoginModal";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+type ErrorCheck = {
+  [key: string]: any;
+};
 
 function RegisterModal() {
   const register = useRegisterModal();
@@ -14,21 +20,58 @@ function RegisterModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShow, setPasswordShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState<ErrorCheck>();
+  const [flag, setFlag] = useState(false);
 
+  const onSubmit = useCallback(
+    async (e: any) => {
+      e.preventDefault();
+
+      try {
+        setLoading(true);
+        const result = await axios.post("/api/register", {
+          name,
+          username,
+          email,
+          password,
+        });
+        console.log(result);
+        toast.success("Account created.");
+        setLoading(false);
+
+        register.loginClose();
+      } catch (error) {
+        console.error(error);
+        toast.error("Something went wrong");
+        setErr(error!);
+        setFlag(true);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [name, username, email, password, register, setLoading]
+  );
+
+  //   console.log(err?.response?.data.error);
   const loginInput = (
     <div className="w-full flex flex-col  p-2 gap-3">
       <div className="rounded-lg flex items-center bg-black/10 focus-within:border-[3.5px] border-transparent border-[3.5px] focus-within:border-cyan-500 duration-150 transition">
         <input
           type="text"
-          className="rrounded-lg p-2 bg-transparent w-full    outline-none"
+          className="rrounded-lg p-2 bg-transparent w-full outline-none"
           placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="rounded-lg flex items-center bg-black/10 focus-within:border-[3.5px] border-transparent border-[3.5px] focus-within:border-cyan-500 duration-150 transition">
         <input
           type="email"
-          className="rrounded-lg p-2 bg-transparent w-full    outline-none"
+          className="rrounded-lg p-2 bg-transparent w-full outline-none"
           placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="rounded-lg flex items-center bg-black/10 focus-within:border-[3.5px] border-transparent border-[3.5px] focus-within:border-cyan-500 duration-150 transition">
@@ -36,6 +79,8 @@ function RegisterModal() {
           type="text"
           className="rrounded-lg p-2 bg-transparent w-full    outline-none"
           placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div className="rounded-lg flex items-center bg-black/10 focus-within:border-[3.5px] border-transparent border-[3.5px] focus-within:border-cyan-500 duration-150 transition">
@@ -73,27 +118,33 @@ function RegisterModal() {
           )}
         </div>
       </div>
+      {err?.response?.data.error && (
+        <div className="text-red-500 text-left relative left-2 max-md:text-[13px]">
+          Email is already taken please try with another email.
+        </div>
+      )}
     </div>
-  );
-
-  const button = (
-    <button className="bg-teal-300 hover:bg-opacity-70 hover:scale-105 transition duration-150 font-semibold rounded-xl p-2">
-      Register
-    </button>
   );
 
   function switchModal() {
     register.loginClose();
+    setEmail("");
+    setPassword("");
+    setName("");
+    setUsername("");
     login.loginOpen();
+    setFlag(false);
+    setErr(undefined);
   }
 
   return (
     <Modal
       loginInput={loginInput}
-      button={button}
       isOpen={register.isOpen}
       loginClose={register.loginClose}
       switchModal={switchModal}
+      onSubmit={onSubmit}
+      loading={loading}
     />
   );
 }
