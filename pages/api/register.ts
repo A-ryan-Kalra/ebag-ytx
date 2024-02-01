@@ -24,8 +24,7 @@ export default async function handler(
     }
 
     const hashedPassword = await hash(password, 12);
-    console.log(name, username, email, hashedPassword);
-    // console.log(typeof hashedPassword);
+
     const user = await prismadb.user.create({
       data: {
         email,

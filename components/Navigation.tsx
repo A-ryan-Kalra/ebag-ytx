@@ -1,4 +1,10 @@
+import Image from "next/image";
 import React, { SetStateAction, useEffect, useState } from "react";
+import { Concert_One, Geologica } from "next/font/google";
+import NavCategories from "./NavCategories";
+import Link from "next/link";
+const inter = Concert_One({ subsets: ["latin"], weight: "400" });
+const merei = Geologica({ subsets: ["latin"], weight: "400" });
 
 function Navigation() {
   const [state, setState] = useState<boolean>(false);
@@ -26,9 +32,32 @@ function Navigation() {
       >
         as
       </div>
-      <div className="w-full flex border-2 justify-between items-center  py-2">
-        <div>womens</div>
-        <div>mens</div>
+      <div className="w-full flex border-2 justify-between items-center  py-1 px-14">
+        <div className={`${merei.className} flex gap-5`}>
+          <div className="flex gap-9">
+            <NavCategories category="MEN" />
+            <NavCategories category="WOMEN" />
+            <NavCategories category="ELECTRONICS" />
+          </div>
+        </div>
+        <Link href={"/"} className="flex  items-end px-2">
+          <div className="">
+            <Image
+              alt="logo"
+              src={"/ebag.webp"}
+              width={35}
+              height={35}
+              className="object-contain"
+            />
+          </div>
+          <h1 className={`${inter.className} text-[20px]`}>Ebag</h1>
+        </Link>
+        <div className="flex gap-12 relative  ">
+          <NavCategories category="FURNITURE" />
+          <NavCategories icon1="iconamoon:search" switchs />
+          <NavCategories icon1="iconamoon:profile-circle-fill" switchs />
+          <NavCategories icon1="solar:cart-5-linear" switchs />
+        </div>
       </div>
     </nav>
   );
