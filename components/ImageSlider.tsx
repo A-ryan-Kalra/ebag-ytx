@@ -16,12 +16,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 function ImageSlider() {
   return (
-    <div className="p-2">
+    <div className="p-2 my-7">
       <div className="w-[95%] mx-auto shadow-xl transition duration-150 rounded-xl border-2 overflow-hidden h-[400px]">
         <Swiper
           cssMode={true}
           slidesPerView={1}
-          spaceBetween={30}
+          // spaceBetween={30}
           autoplay={{
             delay: 3500,
             disableOnInteraction: false,

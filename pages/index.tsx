@@ -5,6 +5,7 @@ import useLoginModal from "@/hooks/useLoginModal";
 
 import { Inter } from "next/font/google";
 import ImageSlider from "@/components/ImageSlider";
+import Favorites from "@/components/Favorites";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <main className="">
       <ImageSlider />
+      <Favorites />
       <div onClick={login.loginOpen}>sign IN</div>
       <div onClick={() => signOut()}>signOut</div>
     </main>
