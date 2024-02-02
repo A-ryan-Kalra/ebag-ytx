@@ -3,6 +3,7 @@ import React, { SetStateAction, useEffect, useState } from "react";
 import { Concert_One, Geologica } from "next/font/google";
 import NavCategories from "./NavCategories";
 import Link from "next/link";
+import NavbarUpper from "./NavbarUpper";
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
 
@@ -27,11 +28,7 @@ function Navigation() {
         state ? "-translate-y-10 " : ""
       }  z-[10] sticky top-0 bg-white duration-300  `}
     >
-      <div
-        className={`duration-200 ease-in-out transition-all bg-black p-2 text-white`}
-      >
-        as
-      </div>
+      <NavbarUpper />
       <div className="w-full flex border-2 justify-between items-center  py-1 px-14">
         <div className={`${merei.className} flex gap-5`}>
           <div className="flex gap-9">

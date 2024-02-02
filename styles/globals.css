@@ -31,3 +31,13 @@ body {
     text-wrap: balance;
   } */
 }
+.item-fade {
+  opacity: 1;
+  transition: opacity 0.2s cubic-bezier(0.37, 0, 0.63, 1) 0s;
+  pointer-events: auto;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}

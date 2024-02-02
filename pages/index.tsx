@@ -4,6 +4,7 @@ import prismadb from "@/libs/prismadb";
 import useLoginModal from "@/hooks/useLoginModal";
 
 import { Inter } from "next/font/google";
+import ImageSlider from "@/components/ImageSlider";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
 
   return (
     <main className="">
+      <ImageSlider />
       <div onClick={login.loginOpen}>sign IN</div>
       <div onClick={() => signOut()}>signOut</div>
     </main>

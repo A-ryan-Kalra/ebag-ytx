@@ -1,4 +1,3 @@
-import { style } from "@/constants/data";
 import React from "react";
 import { Icon } from "@iconify/react";
 
