@@ -36,7 +36,7 @@ function RegisterModal() {
           email,
           password,
         });
-        console.log(result);
+        // console.log(result);
         toast.success("Account created.");
         setLoading(false);
 

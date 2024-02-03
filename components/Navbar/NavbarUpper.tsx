@@ -14,15 +14,17 @@ function NavbarUpper() {
     }
   }, [incre, setIncre, slider.length]);
 
-  console.log(incre);
+  // console.log(incre);
 
   return (
     <div
-      className={`  flex items-center justify-center relative bg-black p-2 text-white`}
+      className={`  flex items-center justify-center relative max-md:h-[45px] bg-black p-2 text-white`}
     >
-      <h1 className="text-center text-[13px]">{slider[incre]}</h1>
+      <h1 className="text-center text-xs  font-semibold w-[65%] md:text-[13px]">
+        {slider[incre]}
+      </h1>
       <div
-        className="absolute m-auto right-[30%] cursor-pointer"
+        className="absolute m-auto right-[10%] lg:right-[30%] cursor-pointer"
         onClick={sliderFun}
       >
         <Icon

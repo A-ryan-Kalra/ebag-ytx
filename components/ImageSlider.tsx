@@ -33,56 +33,104 @@ function ImageSlider() {
           loop={true}
           mousewheel={true}
           keyboard={true}
-          className="w-full flex items-center h-full"
+          className="w-full flex overflow-hidden items-center h-full"
           modules={[Autoplay, Navigation, Pagination, Keyboard, Mousewheel]}
         >
           <SwiperSlide>
             <Image
               src={"/slidershow1.jpg"}
               fill
-              className="object-cover"
+              className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
+            <div className="md:hidden">
+              <Image
+                src={"/slidershow1.jpg"}
+                fill
+                className="object-cover z-0"
+                alt="img"
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src={"/slidershow2.jpg"}
               fill
-              className="object-cover"
+              className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
+            <div className="md:hidden">
+              <Image
+                src={"/slidershow2.jpg"}
+                fill
+                className="object-cover z-0"
+                alt="img"
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src={"/slidershow3.jpg"}
               fill
-              className="object-cover"
+              className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
+            <div className="md:hidden">
+              <Image
+                src={"/slidershow3.jpg"}
+                fill
+                className="object-cover z-0"
+                alt="img"
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src={"/slidershow4.jpg"}
               fill
-              className="object-cover"
+              className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
+            <div className="md:hidden">
+              <Image
+                src={"/slidershow4.jpg"}
+                fill
+                className="object-cover z-0"
+                alt="img"
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src={"/slidershow5.jpg"}
               fill
-              className="object-cover"
+              className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
+            <div className="md:hidden">
+              <Image
+                src={"/slidershow5.jpg"}
+                fill
+                className="object-cover z-0"
+                alt="img"
+              />
+            </div>
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src={"/slidershow6.jpg"}
               fill
-              className="object-cover"
+              className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
+            <div className="md:hidden">
+              <Image
+                src={"/slidershow6.jpg"}
+                fill
+                className="object-cover z-0"
+                alt="img"
+              />
+            </div>
           </SwiperSlide>
         </Swiper>
       </div>

@@ -1,3 +1,5 @@
+import { atom } from "jotai";
+
 export const navbarUp = [
   "50% off on all Universal wears",
   "Free Shipping On Orders Over ₹5000. Free returns.",
@@ -62,7 +64,6 @@ export const style = ` cursor-pointer group relative  before:bg-[#0e0d0d]  befor
 export const style1 = ` cursor-pointer group relative  before:bg-[#0e0d0d]  before:h-[2px] before:w-[100%]  before:left-0 before:bottom-0 w-fit before:rounded-full before:inset-x-0 before:absolute before:transform hover:before:origin-left before:origin-right  before:scale-x-0 before:transition before:duration-200 decoration-none no-underline before:scale-x-100 dark:before:bg-black dark:text-black`;
 
 export const FavImages = [
-  ,
   {
     name: "name1",
     brand: "brand",
@@ -117,3 +118,5 @@ export const FavImages = [
     img: "/img/9.jpg",
   },
 ];
+
+export const HamBurgerHandler = atom(false);

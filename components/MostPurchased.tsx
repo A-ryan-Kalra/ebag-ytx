@@ -37,7 +37,10 @@ function MostPurchased() {
         >
           {image.map((item, index) => (
             <div key={index} className="">
-              <SwiperSlide className="border-2 rounded-xl overflow-hidden max-w-fit shadow-lg">
+              <SwiperSlide
+                key={index}
+                className="border-2 rounded-xl overflow-hidden max-w-fit shadow-lg"
+              >
                 <div className=" hover:scale-105 duration-500">
                   <div className="h-[350px] w-[350px]  ">
                     <Image
