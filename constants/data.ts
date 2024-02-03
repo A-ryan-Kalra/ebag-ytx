@@ -60,3 +60,60 @@ export const FavoritesData = [
 
 export const style = ` cursor-pointer group relative  before:bg-[#0e0d0d]  before:h-[2px] before:w-[100%]  before:left-0 before:bottom-0 w-fit before:rounded-full before:inset-x-0 before:absolute before:transform hover:before:origin-left before:origin-right  before:scale-x-0 before:transition before:duration-200 decoration-none no-underline hover:before:scale-x-100 dark:before:bg-black dark:text-black`;
 export const style1 = ` cursor-pointer group relative  before:bg-[#0e0d0d]  before:h-[2px] before:w-[100%]  before:left-0 before:bottom-0 w-fit before:rounded-full before:inset-x-0 before:absolute before:transform hover:before:origin-left before:origin-right  before:scale-x-0 before:transition before:duration-200 decoration-none no-underline before:scale-x-100 dark:before:bg-black dark:text-black`;
+
+export const FavImages = [
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/1.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/2.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/3.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/4.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/5.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/6.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/7.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/8.jpg",
+  },
+  ,
+  {
+    name: "name1",
+    brand: "brand",
+    img: "/img/9.jpg",
+  },
+];

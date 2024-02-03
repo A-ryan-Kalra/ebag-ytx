@@ -1,5 +1,8 @@
 import { style, style1 } from "@/constants/data";
 import React from "react";
+import { Geologica } from "next/font/google";
+
+const inter = Geologica({ subsets: ["latin"], weight: "400" });
 
 interface CategoryName {
   name?: string;
@@ -13,7 +16,7 @@ function CategoryName({ selected, name, setSelected }: CategoryName) {
       <h1
         className={`${
           selected === name ? style1 : style
-        }  text-2xl mx-auto cursor-pointer w-fit`}
+        }  text-2xl mx-auto cursor-pointer ${inter.className} w-fit`}
       >
         {name}
       </h1>

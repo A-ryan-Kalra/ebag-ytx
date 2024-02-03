@@ -1,12 +1,9 @@
-import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
-import prismadb from "@/libs/prismadb";
 import useLoginModal from "@/hooks/useLoginModal";
-
-import { Inter } from "next/font/google";
 import ImageSlider from "@/components/ImageSlider";
 import Favorites from "@/components/Favorites";
-const inter = Inter({ subsets: ["latin"] });
+import MostPurchased from "@/components/MostPurchased";
+import MiddleSection from "@/components/MiddleSection";
 
 export default function Home() {
   const login = useLoginModal();
@@ -15,6 +12,8 @@ export default function Home() {
     <main className="">
       <ImageSlider />
       <Favorites />
+      <MiddleSection />
+      <MostPurchased />
       <div onClick={login.loginOpen}>sign IN</div>
       <div onClick={() => signOut()}>signOut</div>
     </main>

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import React, { SetStateAction, useEffect, useState } from "react";
-import { Concert_One, Geologica } from "next/font/google";
 import NavCategories from "./NavCategories";
 import Link from "next/link";
 import NavbarUpper from "./NavbarUpper";
+import { Concert_One, Geologica } from "next/font/google";
+
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
 

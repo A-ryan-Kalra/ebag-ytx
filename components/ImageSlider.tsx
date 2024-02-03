@@ -17,7 +17,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 function ImageSlider() {
   return (
     <div className="p-2 my-7">
-      <div className="w-[95%] mx-auto shadow-xl transition duration-150 rounded-xl border-2 overflow-hidden h-[400px]">
+      <div className="w-[95%] mx-auto shadow-xl transition duration-150 rounded-xl border-2 overflow-hidden h-[500px]">
         <Swiper
           cssMode={true}
           slidesPerView={1}
