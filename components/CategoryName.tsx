@@ -12,7 +12,10 @@ interface CategoryName {
 
 function CategoryName({ selected, name, setSelected }: CategoryName) {
   return (
-    <div className="w-1/4 flex" onClick={() => setSelected!(name!)}>
+    <div
+      className="lg:w-1/4 min-w-[200px]  flex"
+      onClick={() => setSelected!(name!)}
+    >
       <h1
         className={`${
           selected === name ? style1 : style

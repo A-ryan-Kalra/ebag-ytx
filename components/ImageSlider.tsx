@@ -43,11 +43,11 @@ function ImageSlider() {
               className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
-            <div className="md:hidden">
+            <div className="">
               <Image
                 src={"/slidershow1.jpg"}
                 fill
-                className="object-cover z-0"
+                className="object-cover md:hidden z-0"
                 alt="img"
               />
             </div>
@@ -59,11 +59,11 @@ function ImageSlider() {
               className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
-            <div className="md:hidden">
+            <div className="">
               <Image
                 src={"/slidershow2.jpg"}
                 fill
-                className="object-cover z-0"
+                className="object-cover md:hidden z-0"
                 alt="img"
               />
             </div>
@@ -75,11 +75,11 @@ function ImageSlider() {
               className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
-            <div className="md:hidden">
+            <div className="">
               <Image
                 src={"/slidershow3.jpg"}
                 fill
-                className="object-cover z-0"
+                className="object-cover md:hidden z-0"
                 alt="img"
               />
             </div>
@@ -91,11 +91,11 @@ function ImageSlider() {
               className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
-            <div className="md:hidden">
+            <div className="">
               <Image
                 src={"/slidershow4.jpg"}
                 fill
-                className="object-cover z-0"
+                className="object-cover md:hidden z-0"
                 alt="img"
               />
             </div>
@@ -107,11 +107,11 @@ function ImageSlider() {
               className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
-            <div className="md:hidden">
+            <div className="">
               <Image
                 src={"/slidershow5.jpg"}
                 fill
-                className="object-cover z-0"
+                className="object-cover md:hidden z-0"
                 alt="img"
               />
             </div>
@@ -123,11 +123,11 @@ function ImageSlider() {
               className="object-contain z-[20] md:object-cover"
               alt="imageSlider"
             />
-            <div className="md:hidden">
+            <div className="">
               <Image
                 src={"/slidershow6.jpg"}
                 fill
-                className="object-cover z-0"
+                className="object-cover md:hidden z-0"
                 alt="img"
               />
             </div>

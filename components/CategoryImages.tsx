@@ -12,7 +12,7 @@ interface CategoryImages {
 function CategoryImages({ name, image }: CategoryImages) {
   return (
     <div className="border-2  shadow-lg rounded-xl flex flex-col justify-between overflow-hidden">
-      <div className="h-[400px] hover:scale-105 duration-300 transition ease-in-out overflow-hidden w-[400px] relative">
+      <div className="md:h-[400px] h-[300px] hover:scale-105 duration-300 transition  ease-in-out overflow-hidden md:w-[400px] w-[350px] relative">
         <Image src={image!} className="object-cover" fill alt="img" />
       </div>
       <div className="border-t-2 my-3  h-full">

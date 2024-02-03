@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <main className="relative">
       <ImageSlider />
-      {/* <Favorites />
-      <MiddleSection />
+      <Favorites />
+      {/* <MiddleSection />
       <MostPurchased /> */}
 
       <div onClick={login.loginOpen}>sign IN</div>

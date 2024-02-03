@@ -19,9 +19,9 @@ function Favorites() {
       <div className={`text-4xl ${inter.className} text-center font-semibold`}>
         Our Favorites
       </div>
-      <div className="w-[1290px]  my-10 mx-auto">
-        <div className="flex flex-col justify-between px-2 gap-3">
-          <div className="flex items-center  justify-center gap-3 w-full border-b-2 border-b-gray-300">
+      <div className="xl:w-[1290px]  my-10 mx-auto">
+        <div className="flex flex-col justify-between px-4 gap-3">
+          <div className="flex  items-center  max-md:justify-start justify-center gap-3 max-w-full max-lg:overflow-x-auto border-b-2 border-b-gray-300">
             {fav.map((item: any, index: any) => (
               <CategoryName
                 selected={selected}
@@ -34,7 +34,7 @@ function Favorites() {
           {fav.map((item, index) => (
             <div
               key={index}
-              className="flex gap-3 justify-between items-center "
+              className="flex flex-col xl:flex-row gap-3 justify-between items-center "
             >
               {item.name === selected &&
                 item.images.map((ite, index) => (

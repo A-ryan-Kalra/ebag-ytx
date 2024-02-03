@@ -35,7 +35,7 @@ function Navigation() {
   return (
     <nav
       className={`${
-        state ? "-translate-y-10 " : ""
+        state ? "-translate-y-12 md:-translate-y-9 " : ""
       }  z-[100] flex flex-col border-2  sticky top-0 bg-white duration-300  `}
     >
       <NavbarUpper />
@@ -95,7 +95,7 @@ function Navigation() {
           <span className="text-center relative top-[2px] inline-block">1</span>
         </div>
       </div>
-      <div className="px-3 my-2">
+      <div className="px-3 lg:hidden my-2">
         <div className="rounded-full px-3 items-center bg-black/10 flex">
           <div
             className="flex items-center"
