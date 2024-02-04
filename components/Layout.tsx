@@ -19,7 +19,7 @@ function Layout({ children }: { children: ReactNode }) {
       {gloglaNav && <MobileNavBar />}
 
       <div>{children}</div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

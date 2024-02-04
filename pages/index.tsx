@@ -16,8 +16,8 @@ export default function Home() {
     <main className="relative">
       <ImageSlider />
       <Favorites />
-      {/* <MiddleSection />
-      <MostPurchased /> */}
+      <MiddleSection />
+      <MostPurchased />
 
       <div onClick={login.loginOpen}>sign IN</div>
       <div onClick={() => signOut()}>signOut</div>

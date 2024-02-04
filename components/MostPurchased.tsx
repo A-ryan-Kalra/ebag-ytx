@@ -18,7 +18,9 @@ function MostPurchased() {
   return (
     <div className="flex flex-col items-end justify-end">
       <div className=" h-[500px]  relative">
-        <h1 className={`w-full text-4xl ${inter.className} my-5`}>
+        <h1
+          className={`w-full max-sm:text-center text-4xl ${inter.className} my-5`}
+        >
           Most Sold Products
         </h1>
         <Swiper
@@ -30,7 +32,7 @@ function MostPurchased() {
           }}
           navigation={true}
           modules={[Navigation]}
-          className="left-auto  w-[1280px] "
+          className="xl:left-auto relative w-[95vw] xl:w-[1280px] "
           // onBeforeInit={(swiper) => {
           //   swiperRef.current = swiper;
           // }}
@@ -39,10 +41,10 @@ function MostPurchased() {
             <div key={index} className="">
               <SwiperSlide
                 key={index}
-                className="border-2 rounded-xl overflow-hidden max-w-fit shadow-lg"
+                className="border-2 rounded-xl overflow-hidden max-w-fit   shadow-lg"
               >
                 <div className=" hover:scale-105 duration-500">
-                  <div className="h-[350px] w-[350px]  ">
+                  <div className="xl:h-[350px] w-[300px] h-[300px] xl:w-[350px]  ">
                     <Image
                       src={item?.img!}
                       width={350}
