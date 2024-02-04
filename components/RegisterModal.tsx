@@ -37,6 +37,11 @@ function RegisterModal() {
           password,
         });
         // console.log(result);
+        const result1 = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
         toast.success("Account created.");
         setLoading(false);
 

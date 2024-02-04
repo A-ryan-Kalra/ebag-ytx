@@ -1,4 +1,5 @@
 import prismadb from "@/libs/prismadb";
+import serverAuth from "@/libs/serverAuth";
 import { hash } from "bcrypt";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -10,6 +11,8 @@ export default async function handler(
     return res.status(405).end();
   }
   try {
+    // const { currentUser } = await serverAuth(req, res);
+
     const { name, username, email, password } = req.body;
     if (!name || !username || !email || !password) {
       throw new Error("Credentials incomplete");

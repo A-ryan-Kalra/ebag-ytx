@@ -1,20 +1,24 @@
 import Image from "next/image";
 import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import NavCategories from "./NavCategories";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import NavbarUpper from "./NavbarUpper";
 import { Concert_One, Geologica } from "next/font/google";
 import { useAtom } from "jotai";
 import { HamBurgerHandler } from "@/constants/data";
 import { Icon } from "@iconify/react";
+import useLoginModal from "@/hooks/useLoginModal";
 
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
 
 function Navigation() {
+  const { data: session } = useSession();
   const [state, setState] = useState<boolean>(false);
   const [ham, setHam] = useAtom(HamBurgerHandler);
-
+  const login = useLoginModal();
+  console.log(session);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {
@@ -82,7 +86,25 @@ function Navigation() {
         <div className="gap-12 relative hidden lg:flex   ">
           <NavCategories category="FURNITURE" />
           <NavCategories icon1="iconamoon:search" switchs />
-          <NavCategories icon1="iconamoon:profile-circle-fill" switchs />
+
+          <div className="cursor-pointer flex items-center">
+            {session ? (
+              <div className=" rounded-full" onClick={() => signOut()}>
+                <Image
+                  alt="img"
+                  width={28}
+                  height={28}
+                  className="object-cover rounded-full"
+                  src={session.user?.image || "/user.png"}
+                />
+              </div>
+            ) : (
+              <div onClick={login.loginOpen}>
+                <NavCategories icon1="iconamoon:profile-circle-fill" switchs />
+              </div>
+            )}
+          </div>
+
           <NavCategories icon1="solar:cart-5-linear" switchs />
         </div>
         <div className="cursor-pointer duration-150 transition ease-in-out inline-block lg:hidden rounded-full">

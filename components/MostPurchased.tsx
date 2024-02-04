@@ -16,10 +16,10 @@ function MostPurchased() {
   const [image, setImg] = useState(FavImages);
   // const swiperRef = useRef<Swiper1>();
   return (
-    <div className="flex flex-col items-end justify-end">
+    <div className="flex flex-col my-10 items-end justify-end">
       <div className=" h-[500px]  relative">
         <h1
-          className={`w-full max-sm:text-center text-4xl ${inter.className} my-5`}
+          className={`w-full  max-sm:text-center text-4xl ${inter.className} my-5`}
         >
           Most Sold Products
         </h1>
@@ -32,7 +32,7 @@ function MostPurchased() {
           }}
           navigation={true}
           modules={[Navigation]}
-          className="xl:left-auto relative w-[95vw] xl:w-[1280px] "
+          className="xl:left-auto relative w-[95vw]  "
           // onBeforeInit={(swiper) => {
           //   swiperRef.current = swiper;
           // }}

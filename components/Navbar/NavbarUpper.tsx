@@ -18,7 +18,7 @@ function NavbarUpper() {
 
   return (
     <div
-      className={`  flex items-center justify-center relative max-md:h-[45px] bg-black p-2 text-white`}
+      className={`  flex items-center justify-center relative max-md:h-[45px] bg-black  p-2 text-white`}
     >
       <h1 className="text-center text-xs  font-semibold w-[65%] md:text-[13px]">
         {slider[incre]}
