@@ -18,7 +18,7 @@ function Navigation() {
   const [state, setState] = useState<boolean>(false);
   const [ham, setHam] = useAtom(HamBurgerHandler);
   const login = useLoginModal();
-  console.log(session);
+  // console.log(session);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 60) {

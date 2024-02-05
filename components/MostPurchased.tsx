@@ -14,6 +14,14 @@ const inter1 = Piazzolla({ subsets: ["latin"], weight: "600" });
 
 function MostPurchased() {
   const [image, setImg] = useState(FavImages);
+
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index: any, className: any) {
+      return '<span class="' + className + '">' + (index + 1) + "</span>";
+    },
+  };
+
   // const swiperRef = useRef<Swiper1>();
   return (
     <div className="flex flex-col my-10 items-end justify-end">
@@ -23,13 +31,23 @@ function MostPurchased() {
         >
           Most Sold Products
         </h1>
+        {/* <div id="containerForBullets"></div> */}
         <Swiper
           slidesPerView={"auto"}
           centeredSlides={false}
           spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
+          // pagination={{
+          //   type: "bullets",
+          //   bulletClass: "swiper-custom-bullet",
+          //   bulletActiveClass: "swiper-custom-bullet-active",
+          //   el: "#containerForBullets",
+          //   clickable: true,
+          //   renderBullet: function (index, className) {
+          //     return (
+          //       '<span class="' + className + '">' + (index + 1) + "</span>"
+          //     );
+          //   },
+          // }}
           navigation={true}
           modules={[Navigation]}
           className="xl:left-auto relative w-[95vw]  "

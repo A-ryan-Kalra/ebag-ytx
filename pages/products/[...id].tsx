@@ -1,0 +1,65 @@
+import Products from "@/components/Products/Products";
+import useGetProducts from "@/hooks/useGetProducts";
+import axios from "axios";
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { Params } from "react-router-dom";
+
+interface ImagesProps {
+  [key: string]: any;
+}
+
+function Index({ initialData }: Params) {
+  // console.log(initialData);
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [item, setItem] = useState<{ [key: string]: any }>();
+  const { data, error, isLoading, mutate } = useGetProducts(
+    id?.[0] as string,
+    id?.[1] as string
+  );
+
+  useEffect(() => {
+    data?.map((i: any) => i?.product?.map((i: any) => setItem(i)));
+  }, [data]);
+  // console.log(item);
+  // let selected = dress?.filter((produc) => {
+  //   return produc?.product.some((item) =>
+  //     item?.title.includes("frock gold printed")
+  //   );
+  // });
+
+  return (
+    <div className="min-h-screen">
+      <div className="flex  w-full p-2">
+        <Products item={item?.images} />
+        <div className="flex-1 bg-black/20"></div>
+      </div>
+    </div>
+  );
+}
+
+export default Index;
+
+// export const getServerSideProps: GetServerSideProps = async (Context) => {
+//   const id = Context?.params?.id;
+//   console.log("Context.params");
+//   console.log(id?.[0]);
+//   console.log("Context.params");
+//   // const { data, error, isLoading, mutate } = useGetProducts(
+//   //   id?.[0] as string,
+//   //   id?.[1] as string
+//   // );
+//   const response = await axios.get(
+//     `http://localhost:3000/api/products/${id?.[0]}/${id?.[1]}`
+//   ); // Replace with your API route URL
+//   const initialData = response.data;
+//   console.log(initialData);
+//   return {
+//     props: {
+//       initialData,
+//     },
+//   };
+// };

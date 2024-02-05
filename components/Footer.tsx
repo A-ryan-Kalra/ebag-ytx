@@ -9,8 +9,10 @@ const inter = Arvo({
 
 function Footer() {
   return (
-    <div className={`${inter.className} relative top-10`}>
-      <div className="flex relative justify-around items-center dark:border-white dark:text-white duration-300  py-3 border-t-2 border-black">
+    <div className={` relative top-10 `}>
+      <div
+        className={`${inter.className} flex relative justify-around items-center dark:border-white dark:text-white duration-300  py-3 border-t-2 border-black`}
+      >
         <span className="md:text-xl text-[14px]">
           {new Date().getFullYear()} &copy; All Rights Reserved.
         </span>

@@ -10,16 +10,11 @@ export const FavoritesData = [
   {
     name: "FOR WOMEN",
     images: [
+      { category: "women", name: "frock gold printed", images: "/img/1.jpg" },
+      { category: "women", name: "NIGHT SUIT", images: "/img/2.jpg" },
       {
-        name: "Ghazi Fabric",
-        images: "/img/1.jpg",
-      },
-      {
-        name: "RED MICKY MOUSE",
-        images: "/img/2.jpg",
-      },
-      {
-        name: "Maasai Sandals",
+        category: "women",
+        name: "Chappals & Shoe Ladies Metallic",
         images: "/img/3.jpg",
       },
     ],
@@ -28,34 +23,32 @@ export const FavoritesData = [
     name: "FOR MEN",
     images: [
       {
-        name: "Money Heist T-Shirts",
+        category: "men",
+        name: "Money Heist Printed Summer T Shirts",
         images: "/img/4.jpg",
       },
       {
-        name: "Pubg T-Shirt",
+        category: "men",
+        name: "Pubg Printed Graphic T-Shirt",
         images: "/img/5.jpg",
       },
-      {
-        name: "Sneakers",
-        images: "/img/6.jpg",
-      },
+      { category: "men", name: "Spring and summershoes", images: "/img/6.jpg" },
     ],
   },
   {
     name: "FOR FURNITURE",
     images: [
       {
+        category: "furniture",
         name: "Mornadi Velvet Bed",
         images: "/img/7.jpg",
       },
       {
+        category: "furniture",
         name: "Sofa for Coffe Cafe",
         images: "/img/8.jpg",
       },
-      {
-        name: "DOOR PORTABLE",
-        images: "/img/9.jpg",
-      },
+      { category: "furniture", name: "3 DOOR PORTABLE", images: "/img/9.jpg" },
     ],
   },
 ];

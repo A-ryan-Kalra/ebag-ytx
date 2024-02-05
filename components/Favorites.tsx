@@ -42,6 +42,7 @@ function Favorites() {
                     key={index}
                     name={ite?.name}
                     image={ite?.images}
+                    category={ite?.category}
                   />
                 ))}
             </div>
