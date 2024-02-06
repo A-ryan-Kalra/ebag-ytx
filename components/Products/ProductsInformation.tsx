@@ -78,8 +78,8 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     <div className="flex-1   px-5">
       <div className="flex h-full flex-col items-start justify-start  xl:px-20 mx-auto gap-3">
         <div className="w-full hidden lg:inline-block">
-          <LinkTag name="Home" /> / <LinkTag name={product} /> /{" "}
-          <LinkTag name={category} /> /{" "}
+          <LinkTag name="Home" /> /<LinkTag name={category} /> /{""}
+          <LinkTag name={product} />/{" "}
         </div>
         <div className="border-b-2 py-2 w-full flex flex-col gap-1">
           <h1 className="capitalize text-[35px] font-semibold">

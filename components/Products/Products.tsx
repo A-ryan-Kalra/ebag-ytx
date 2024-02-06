@@ -69,7 +69,7 @@ function Products({ item }: ItemProps) {
             key={index}
             index={index}
             name={i}
-            select={selected as string}
+            select={activeIndex}
             selected={selectFun}
             onClicked={(index) => handleImageClick(index)}
           />
@@ -78,8 +78,8 @@ function Products({ item }: ItemProps) {
 
       <div className=" max-lg:gap-3 max-lg:flex max-lg:flex-col ">
         <div className="w-full lg:hidden">
-          <LinkTag name="Home" /> /<LinkTag name={product} /> /{""}
-          <LinkTag name={category} /> /{" "}
+          <LinkTag name="Home" /> /<LinkTag name={category} /> /{""}
+          <LinkTag name={product} /> /{" "}
         </div>
         <div className=" border-2 shadow-lg w-[90vw] h-[95vw]   relative lg:w-[600px] lg:h-[600px] overflow-hidden">
           <div className=" overflow-hidden ">

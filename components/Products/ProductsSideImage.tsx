@@ -3,7 +3,7 @@ import Image from "next/image";
 
 interface Props {
   name?: string;
-  select?: string;
+  select?: number;
   selected?: (kl?: string) => void;
   onClicked?: (kl: number) => void;
   index?: number;
@@ -18,7 +18,7 @@ function ProductsSideImage({
   return (
     <div
       className={`border-[3px] ${
-        select === name ? "border-black" : ""
+        select === index ? "border-black" : ""
       } shadow-lg duration-200 cursor-pointer overflow-hidden`}
       onClick={() => {
         selected!(name);
