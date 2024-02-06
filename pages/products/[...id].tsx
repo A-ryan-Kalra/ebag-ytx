@@ -1,4 +1,5 @@
 import Products from "@/components/Products/Products";
+import ProductsInformation from "@/components/Products/ProductsInformation";
 import useGetProducts from "@/hooks/useGetProducts";
 import axios from "axios";
 import { GetServerSideProps } from "next";
@@ -33,9 +34,9 @@ function Index({ initialData }: Params) {
 
   return (
     <div className="min-h-screen">
-      <div className="flex  w-full p-2">
+      <div className="flex lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">
         <Products item={item?.images} />
-        <div className="flex-1 bg-black/20"></div>
+        <ProductsInformation item={item} />
       </div>
     </div>
   );

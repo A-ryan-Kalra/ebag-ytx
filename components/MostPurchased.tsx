@@ -1,12 +1,13 @@
 import React, { useRef, useState } from "react";
+import Image from "next/image";
+import { FavImages } from "@/constants/data";
+
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
-import { FavImages } from "@/constants/data";
-import Image from "next/image";
 import { Swiper as Swiper1 } from "swiper";
+
 import { Rozha_One, Piazzolla } from "next/font/google";
 
 const inter = Rozha_One({ subsets: ["latin"], weight: "400" });

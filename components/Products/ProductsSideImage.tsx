@@ -5,15 +5,25 @@ interface Props {
   name?: string;
   select?: string;
   selected?: (kl?: string) => void;
+  onClicked?: (kl: number) => void;
+  index?: number;
 }
-function ProductsSideImage({ select, name, selected }: Props) {
-  console.log(select === name);
+function ProductsSideImage({
+  index,
+  onClicked,
+  select,
+  name,
+  selected,
+}: Props) {
   return (
     <div
       className={`border-[3px] ${
         select === name ? "border-black" : ""
       } shadow-lg duration-200 cursor-pointer overflow-hidden`}
-      onClick={() => selected!(name)}
+      onClick={() => {
+        selected!(name);
+        onClicked!(index as number);
+      }}
     >
       <div className="w-[78px] relative h-[78px]">
         <Image
