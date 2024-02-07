@@ -4,10 +4,12 @@ import { hideScrollbar, showScrollbar } from "./hidescrollbar";
 import { cart } from "./Navbar/Navigation";
 import { Icon } from "@iconify/react";
 import CartButton from "./CartButton";
+import { flagCart } from "./Products/ProductsInformation";
 
 function Cart() {
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
   const [bar, setBar] = useState(false);
+  const [cartq, setCartQ] = useAtom(flagCart);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,12 +45,13 @@ function Cart() {
               />
             </div>
             <div className="flex flex-col mx-auto items-center">
-              <div className="w-fit p-2">
+              <div className=" p-2 flex justify-center items-center text-center ">
                 <Icon
                   icon={"solar:cart-5-linear"}
-                  className="text-black  inline hover:text-[#2a8085]"
+                  className="text-black inline-block"
                   width={25}
-                />
+                />{" "}
+                <span className=" inline-block">{cartq}</span>
               </div>
               <h1 className="text-[13px] text-center">
                 You're <span className="font-bold">₹500</span> away from free

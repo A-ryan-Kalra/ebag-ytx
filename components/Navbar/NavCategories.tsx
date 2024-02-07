@@ -5,9 +5,10 @@ interface Categories {
   category?: string;
   icon1?: string;
   switchs?: boolean;
+  cartq?: number;
 }
 
-function NavCategories({ category, icon1, switchs }: Categories) {
+function NavCategories({ cartq, category, icon1, switchs }: Categories) {
   return (
     <>
       {!switchs ? (
@@ -25,7 +26,7 @@ function NavCategories({ category, icon1, switchs }: Categories) {
           />
           {icon1 === "solar:cart-5-linear" && (
             <span className="text-center relative top-[2px] inline-block">
-              1
+              {cartq}
             </span>
           )}
         </div>

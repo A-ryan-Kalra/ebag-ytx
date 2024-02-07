@@ -9,6 +9,7 @@ import { atom, useAtom } from "jotai";
 import { HamBurgerHandler } from "@/constants/data";
 import { Icon } from "@iconify/react";
 import useLoginModal from "@/hooks/useLoginModal";
+import { flagCart } from "../Products/ProductsInformation";
 
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
@@ -20,6 +21,7 @@ function Navigation() {
   const [ham, setHam] = useAtom(HamBurgerHandler);
   const login = useLoginModal();
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
+  const [cartq, setCartQ] = useAtom(flagCart);
 
   // console.log(session);
   useEffect(() => {
@@ -39,6 +41,7 @@ function Navigation() {
   };
   const refe = useRef<HTMLInputElement>(null);
 
+  console.log(cartq);
   return (
     <nav
       className={`${
@@ -109,7 +112,7 @@ function Navigation() {
           </div>
 
           <div className=" " onClick={() => setIsCartOpened(!isCartOpened)}>
-            <NavCategories icon1="solar:cart-5-linear" switchs />
+            <NavCategories cartq={cartq} icon1="solar:cart-5-linear" switchs />
           </div>
         </div>
         <div
@@ -122,7 +125,9 @@ function Navigation() {
             width={25}
           />
 
-          <span className="text-center relative top-[2px] inline-block">1</span>
+          <span className="text-center relative top-[2px] inline-block">
+            {cartq}
+          </span>
         </div>
       </div>
       <div className="px-3 lg:hidden my-2">

@@ -39,7 +39,7 @@ model User{
 
 model Orders{
   id            String    @id @default(cuid())
-  name String?
+  name String? @unique
   address String?
   zipcode String?
   city String?

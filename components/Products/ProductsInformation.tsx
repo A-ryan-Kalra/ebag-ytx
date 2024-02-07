@@ -1,19 +1,30 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import LinkTag from "./LinkTag";
 import Image from "next/image";
 import starFull from "@/public/stars/star-full.png";
 import starEmpty from "@/public/stars/star-empty.png";
 import starHalfEmpty from "@/public/stars/star-half-empty.png";
+import { atom, useAtom } from "jotai";
 
+export const flagCart = atom(0);
 function ProductsInformation({ item }: { [key: string]: any }) {
   console.log(item);
   const router = useRouter();
   const { id } = router.query;
-
   const [category, setCategory] = useState("");
   const [product, setProduct] = useState("");
+
+  const [cartq, setCartQ] = useAtom(flagCart);
+  const [cartQuant, setCartQuant] = useState<number>(() => {
+    try {
+      return Number(localStorage.getItem("cart") || "0");
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
+      return 0;
+    }
+  });
 
   useEffect(() => {
     if (id && id?.length > 0) {
@@ -22,6 +33,19 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     }
   }, [id]);
 
+  useEffect(() => {
+    localStorage.setItem("cart", cartQuant.toString());
+
+    const timer = setTimeout(() => {
+      localStorage.getItem("cart");
+
+      const cartQuant = Number(localStorage.getItem("cart"));
+      setCartQ(cartQuant);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [cartQuant]);
+
+  console.log(cartQuant, "CartQuantity");
   const getStars = () => {
     const stars = [];
 
@@ -74,6 +98,11 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     });
   };
 
+  const handle = () => {
+    setCartQuant((prev) => prev + 1);
+    // console.log(cartQuant);
+  };
+
   return (
     <div className="flex-1   px-5">
       <div className="flex h-full flex-col items-start justify-start  xl:px-20 mx-auto gap-3">
@@ -117,7 +146,10 @@ function ProductsInformation({ item }: { [key: string]: any }) {
             {item?.description}
           </h1>
         </div>
-        <button className="bg-black text-white py-3 w-full duration-200 transition-all ease-in-out border-2 border-black hover:bg-white hover:text-black">
+        <button
+          className="bg-black text-white py-3 w-full duration-200 transition-all ease-in-out border-2 border-black hover:bg-white hover:text-black active:scale-90 "
+          onClick={handle}
+        >
           ADD TO CART
         </button>
       </div>
