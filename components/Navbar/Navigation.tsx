@@ -5,19 +5,22 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import NavbarUpper from "./NavbarUpper";
 import { Concert_One, Geologica } from "next/font/google";
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { HamBurgerHandler } from "@/constants/data";
 import { Icon } from "@iconify/react";
 import useLoginModal from "@/hooks/useLoginModal";
 
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
+export const cart = atom(false);
 
 function Navigation() {
   const { data: session } = useSession();
   const [state, setState] = useState<boolean>(false);
   const [ham, setHam] = useAtom(HamBurgerHandler);
   const login = useLoginModal();
+  const [isCartOpened, setIsCartOpened] = useAtom(cart);
+
   // console.log(session);
   useEffect(() => {
     const handleScroll = () => {
@@ -105,9 +108,14 @@ function Navigation() {
             )}
           </div>
 
-          <NavCategories icon1="solar:cart-5-linear" switchs />
+          <div className=" " onClick={() => setIsCartOpened(!isCartOpened)}>
+            <NavCategories icon1="solar:cart-5-linear" switchs />
+          </div>
         </div>
-        <div className="cursor-pointer duration-150 transition ease-in-out inline-block lg:hidden rounded-full">
+        <div
+          className="cursor-pointer duration-150 transition ease-in-out inline-block lg:hidden rounded-full"
+          onClick={() => setIsCartOpened(!isCartOpened)}
+        >
           <Icon
             icon={"solar:cart-5-linear"}
             className="text-black  inline hover:text-[#2a8085]"

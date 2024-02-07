@@ -76,7 +76,7 @@ function Products({ item }: ItemProps) {
         ))}
       </div>
 
-      <div className=" max-lg:gap-3 max-lg:flex max-lg:flex-col ">
+      <div className="w-full max-lg:gap-3 max-lg:flex max-lg:flex-col ">
         <div className="w-full lg:hidden">
           <LinkTag name="Home" /> /<LinkTag name={category} /> /{""}
           <LinkTag name={product} /> /{" "}

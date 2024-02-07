@@ -22,7 +22,8 @@
     "react-hot-toast": "^2.4.1",
     "react-spinners": "^0.13.8",
     "swiper": "^11.0.5",
-    "swr": "^2.2.4"
+    "swr": "^2.2.4",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",

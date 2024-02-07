@@ -33,8 +33,8 @@ function Index({ initialData }: Params) {
   // });
 
   return (
-    <div className="min-h-screen">
-      <div className="flex lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">
+    <div className="min-h-screen  max-w-[1620px] mx-auto">
+      <div className="flex  lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">
         <Products item={item?.images} />
         <ProductsInformation item={item} />
       </div>

@@ -54,3 +54,25 @@ body {
   width: 2px;
   background-color: orange;
 }
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+.hide-scroll .show-scrollbar {
+  overflow-y: auto;
+  scrollbar-width: auto; /* Firefox */
+  -ms-overflow-style: auto; /* IE */
+}
+.kl::-webkit-scrollbar {
+  display: none;
+}
