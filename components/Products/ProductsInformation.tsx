@@ -7,16 +7,26 @@ import starFull from "@/public/stars/star-full.png";
 import starEmpty from "@/public/stars/star-empty.png";
 import starHalfEmpty from "@/public/stars/star-half-empty.png";
 import { atom, useAtom } from "jotai";
+import axios from "axios";
+import { signIn, signOut, useSession } from "next-auth/react";
+import useLoginModal from "@/hooks/useLoginModal";
+import useGetCart from "@/hooks/useGetCarts";
 
 export const flagCart = atom(0);
 function ProductsInformation({ item }: { [key: string]: any }) {
-  console.log(item);
+  // console.log(item);
+  const { data: session } = useSession();
+  // console.log(session);
   const router = useRouter();
   const { id } = router.query;
   const [category, setCategory] = useState("");
   const [product, setProduct] = useState("");
-
+  const login = useLoginModal();
+  const [discountedPrice, setDiscountedPrice] = useState("");
   const [cartq, setCartQ] = useAtom(flagCart);
+  const [number, setNumber] = useState<number>(0);
+  const { data: orderedCarts } = useGetCart();
+
   const [cartQuant, setCartQuant] = useState<number>(() => {
     try {
       return Number(localStorage.getItem("cart") || "0");
@@ -31,7 +41,8 @@ function ProductsInformation({ item }: { [key: string]: any }) {
       setCategory(id[0]);
       setProduct(id[1]);
     }
-  }, [id]);
+    setDiscountedPrice(getDiscount(item?.discountPercentage));
+  }, [id, item]);
 
   useEffect(() => {
     localStorage.setItem("cart", cartQuant.toString());
@@ -45,7 +56,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     return () => clearTimeout(timer);
   }, [cartQuant]);
 
-  console.log(cartQuant, "CartQuantity");
+  // console.log(cartQuant, "CartQuantity");
   const getStars = () => {
     const stars = [];
 
@@ -92,16 +103,48 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     const discount = dis;
     const total = (item?.price * 82 * discount) / 100;
     const price = item?.price * 82 - total;
-    return Math.round(price).toLocaleString("en-IN", {
+    const convertedPrice = Math.round(price).toLocaleString("en-IN", {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     });
+    setNumber(Math.round(price));
+    return convertedPrice;
   };
+  // console.log(number);
+  const handle = useCallback(async () => {
+    if (!session) {
+      login.loginOpen();
+    } else {
+      setCartQuant((prev) => prev + 1);
+      // console.log(cartQuant);
+      let quant = cartQuant + 1;
 
-  const handle = () => {
-    setCartQuant((prev) => prev + 1);
-    // console.log(cartQuant);
-  };
+      try {
+        const res = await axios.post("/api/order", {
+          title: item?.title,
+          price: number,
+          thumbnail: item?.thumbnail,
+          stock: item?.stock,
+          description: item?.description,
+          brand: item?.brand,
+          quantity: quant,
+        });
+        console.log(res);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [
+    setCartQuant,
+    login.loginOpen,
+    session,
+    item?.title,
+    item?.discountPercentage,
+    item?.brand,
+    item?.thumbnail,
+    cartQuant,
+    getDiscount,
+  ]);
 
   return (
     <div className="flex-1   px-5">
@@ -126,7 +169,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
             <span className="text-red-500  font-serif font-normal">
               -{item?.discountPercentage || "0"}%
             </span>{" "}
-            ₹{getDiscount(item?.discountPercentage) || "0"}
+            ₹{discountedPrice || "0"}
           </h1>
           <h1 className="inline-block text-[13px]">
             M.R.P:{" "}

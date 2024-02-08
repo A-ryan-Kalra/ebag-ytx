@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CategoryName from "./CategoryName";
-import CategoryImages from "./CategoryImages";
+import CategoryImages from "./Cart/CategoryImages";
 import { FavoritesData } from "@/constants/data";
 import { Rozha_One } from "next/font/google";
 

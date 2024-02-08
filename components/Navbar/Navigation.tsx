@@ -41,7 +41,7 @@ function Navigation() {
   };
   const refe = useRef<HTMLInputElement>(null);
 
-  console.log(cartq);
+  // console.log(cartq);
   return (
     <nav
       className={`${

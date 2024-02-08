@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { cart } from "./Navbar/Navigation";
+import { cart } from "../Navbar/Navigation";
 import { useAtom } from "jotai";
 
 interface Props {

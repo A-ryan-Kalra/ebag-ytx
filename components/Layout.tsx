@@ -7,8 +7,8 @@ import Footer from "./Footer";
 import { useAtom } from "jotai";
 import { HamBurgerHandler } from "@/constants/data";
 import MobileNavBar from "./MobileNavBar";
-import Cart from "./Cart";
-import { hideScrollbar, showScrollbar } from "./hidescrollbar";
+import Cart from "./Cart/Cart";
+import { hideScrollbar, showScrollbar } from "../constants/hidescrollbar";
 
 function Layout({ children }: { children: ReactNode }) {
   const [gloglaNav, setGlobalNav] = useAtom(HamBurgerHandler);

@@ -7,6 +7,7 @@ const useGetProducts = (categoryId?: string, title?: string) => {
     fetcher,
     {
       revalidateOnMount: true,
+      revalidateOnFocus: true,
     }
   );
   return {
