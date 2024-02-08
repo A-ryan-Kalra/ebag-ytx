@@ -22,6 +22,22 @@ function Navigation() {
   const login = useLoginModal();
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
   const [cartq, setCartQ] = useAtom(flagCart);
+  const [cartQuant, setCartQuant] = useState<number>(() => {
+    try {
+      return Number(localStorage.getItem("cart") || "0");
+    } catch (error) {
+      console.error("Error accessing localStorage:", error);
+      return 0;
+    }
+  });
+  useEffect(() => {
+    // setCartQuant(cartQuant1);
+    const timer = setTimeout(() => {
+      const cartQuant1 = Number(localStorage.getItem("cart"));
+      setCartQ(cartQuant1);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [cartQuant]);
 
   // console.log(session);
   useEffect(() => {

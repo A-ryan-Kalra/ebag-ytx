@@ -44,17 +44,18 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     setDiscountedPrice(getDiscount(item?.discountPercentage));
   }, [id, item]);
 
+  // useEffect(() => {
+  //   // setCartQuant(cartQuant1);
+  //   const timer = setTimeout(() => {
+  //     const cartQuant1 = Number(localStorage.getItem("cart"));
+  //     setCartQ(cartQuant1);
+  //   }, 300);
+  //   return()=>clearTimeout(timer)
+  // }, [cartQuant]);
+
   useEffect(() => {
-    localStorage.setItem("cart", cartQuant.toString());
-
-    const timer = setTimeout(() => {
-      localStorage.getItem("cart");
-
-      const cartQuant = Number(localStorage.getItem("cart"));
-      setCartQ(cartQuant);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [cartQuant]);
+    setCartQuant(cartq);
+  }, [cartq]);
 
   // console.log(cartQuant, "CartQuantity");
   const getStars = () => {
@@ -116,8 +117,11 @@ function ProductsInformation({ item }: { [key: string]: any }) {
       login.loginOpen();
     } else {
       setCartQuant((prev) => prev + 1);
+      setCartQ((pre) => pre + 1);
       // console.log(cartQuant);
       let quant = cartQuant + 1;
+
+      localStorage.setItem("cart", quant.toString());
 
       try {
         const res = await axios.post("/api/order", {
