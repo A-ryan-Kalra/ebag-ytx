@@ -25,7 +25,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
   const [discountedPrice, setDiscountedPrice] = useState("");
   const [cartq, setCartQ] = useAtom(flagCart);
   const [number, setNumber] = useState<number>(0);
-  const { data: orderedCarts } = useGetCart();
+  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
 
   const [cartQuant, setCartQuant] = useState<number>(() => {
     try {
@@ -53,11 +53,11 @@ function ProductsInformation({ item }: { [key: string]: any }) {
   //   return()=>clearTimeout(timer)
   // }, [cartQuant]);
 
-  useEffect(() => {
-    setCartQuant(cartq);
-  }, [cartq]);
+  // useEffect(() => {
+  //   setCartQuant(cartq);
+  // }, [cartq]);
 
-  // console.log(cartQuant, "CartQuantity");
+  console.log(cartQuant, "CartQuantity");
   const getStars = () => {
     const stars = [];
 
@@ -120,8 +120,9 @@ function ProductsInformation({ item }: { [key: string]: any }) {
       setCartQ((pre) => pre + 1);
       // console.log(cartQuant);
       let quant = cartQuant + 1;
+      let quantq = cartq + 1;
 
-      localStorage.setItem("cart", quant.toString());
+      localStorage.setItem("cart", quantq.toString());
 
       try {
         const res = await axios.post("/api/order", {
@@ -134,6 +135,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
           quantity: quant,
         });
         console.log(res);
+        cartItemMutate();
       } catch (error) {
         console.error(error);
       }
@@ -141,6 +143,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
   }, [
     setCartQuant,
     login.loginOpen,
+    cartItemMutate,
     session,
     item?.title,
     item?.discountPercentage,

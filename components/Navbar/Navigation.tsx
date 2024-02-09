@@ -1,5 +1,11 @@
 import Image from "next/image";
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
+import React, {
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import NavCategories from "./NavCategories";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -10,6 +16,7 @@ import { HamBurgerHandler } from "@/constants/data";
 import { Icon } from "@iconify/react";
 import useLoginModal from "@/hooks/useLoginModal";
 import { flagCart } from "../Products/ProductsInformation";
+import useGetCart from "@/hooks/useGetCarts";
 
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
@@ -22,6 +29,10 @@ function Navigation() {
   const login = useLoginModal();
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
   const [cartq, setCartQ] = useAtom(flagCart);
+  const [cartq1, setCartQ1] = useState(0);
+  const [cartItems, setCartItems] = useState<Array<Object>>();
+  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
+
   const [cartQuant, setCartQuant] = useState<number>(() => {
     try {
       return Number(localStorage.getItem("cart") || "0");
@@ -30,15 +41,30 @@ function Navigation() {
       return 0;
     }
   });
+
   useEffect(() => {
     // setCartQuant(cartQuant1);
     const timer = setTimeout(() => {
       const cartQuant1 = Number(localStorage.getItem("cart"));
-      setCartQ(cartQuant1);
+      if (cartQuant1 !== 0) {
+        setCartQ(cartQuant1);
+      } else {
+        setCartQ(cartq1);
+      }
     }, 300);
     return () => clearTimeout(timer);
-  }, [cartQuant]);
+  }, [cartQuant, cartq1]);
 
+  console.log(cartQuant);
+  useEffect(() => {
+    setCartQ1(0);
+    cartItems?.forEach((i: any) => setCartQ1((prev) => prev + i.quantity));
+    // localStorage.setItem("cart", cartq.toString());
+  }, [cartItems]);
+
+  useEffect(() => {
+    setCartItems(orderedCarts);
+  }, [orderedCarts]);
   // console.log(session);
   useEffect(() => {
     const handleScroll = () => {
@@ -56,6 +82,12 @@ function Navigation() {
     setHam(!ham);
   };
   const refe = useRef<HTMLInputElement>(null);
+
+  const signOutHandle = useCallback(() => {
+    localStorage.removeItem("cart");
+
+    signOut();
+  }, [signOut]);
 
   // console.log(cartq);
   return (
@@ -111,7 +143,7 @@ function Navigation() {
 
           <div className="cursor-pointer flex items-center">
             {session ? (
-              <div className=" rounded-full" onClick={() => signOut()}>
+              <div className=" rounded-full" onClick={signOutHandle}>
                 <Image
                   alt="img"
                   width={28}

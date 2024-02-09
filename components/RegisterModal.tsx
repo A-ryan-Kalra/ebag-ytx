@@ -7,6 +7,7 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 import useLoginModal from "@/hooks/useLoginModal";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 type ErrorCheck = {
   [key: string]: any;
@@ -23,6 +24,7 @@ function RegisterModal() {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<ErrorCheck>();
   const [flag, setFlag] = useState(false);
+  const router = useRouter();
 
   const onSubmit = useCallback(
     async (e: any) => {
@@ -46,6 +48,7 @@ function RegisterModal() {
         setLoading(false);
 
         register.loginClose();
+        router.reload();
       } catch (error) {
         console.error(error);
         toast.error("Something went wrong");

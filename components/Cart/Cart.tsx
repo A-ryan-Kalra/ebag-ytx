@@ -13,8 +13,8 @@ function Cart() {
   const [bar, setBar] = useState(false);
   const [cartq, setCartQ] = useAtom(flagCart);
   const [cartItems, setCartItems] = useState<Array<Object>>();
-  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
   const [cartQuant, setCartQuant] = useState<number>(0);
+  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
 
   useEffect(() => {
     setCartQ(0);

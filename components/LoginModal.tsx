@@ -6,6 +6,7 @@ import Modal from "./Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import { signIn, signOut, useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 function LoginModal() {
   const register = useRegisterModal();
@@ -16,6 +17,7 @@ function LoginModal() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const onSubmit = useCallback(
     async (e: any) => {
@@ -34,6 +36,7 @@ function LoginModal() {
           toast.success("Logged in");
           setLoading(false);
           login.loginClose();
+          router.reload();
         }
       } catch (error) {
         console.error(error);
