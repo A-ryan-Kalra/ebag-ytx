@@ -11,7 +11,8 @@ export default async function handler(
   }
   try {
     if (req.method === "POST") {
-      const { title, price, thumbnail, stock, description, brand } = req.body;
+      const { title, price, thumbnail, stock, description, brand, categories } =
+        req.body;
       const { currentUser } = await serverAuth(req, res);
       const currentUsersOrder = await prismadb.orders.findMany({
         where: {
@@ -45,8 +46,6 @@ export default async function handler(
         });
         return res.status(200).json(updateOrder);
       } else {
-        console.log("currentUsersOrder11");
-
         result = await prismadb.orders.create({
           data: {
             title,
@@ -58,6 +57,7 @@ export default async function handler(
             stock,
             brand,
             orderStatus: "pending",
+            categories,
           },
         });
 

@@ -119,6 +119,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
           description: item?.description,
           brand: item?.brand,
           quantity: quant,
+          categories: category,
         });
         // console.log(res);
         cartItemMutate();
@@ -128,6 +129,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     }
   }, [
     setCartQuant,
+    category,
     login.loginOpen,
     cartItemMutate,
     session,

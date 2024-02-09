@@ -94,7 +94,7 @@ function Cart() {
           ) : (
             <div className="flex flex-col gap-3 py-2 px-4 sm:px-6 overflow-y-scroll">
               {cartItems?.map((item: any, index: number) => (
-                <CartItem key={index} item={item} />
+                <CartItem key={index} item={item} handle={handle} />
               ))}
             </div>
           )}

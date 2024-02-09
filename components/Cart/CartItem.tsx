@@ -2,12 +2,13 @@ import useGetCart from "@/hooks/useGetCarts";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import React, { MouseEventHandler, useCallback, useState } from "react";
 
 interface cartItem {
   [key: string]: any;
 }
-function CartItem({ item }: cartItem) {
+function CartItem({ item, handle }: cartItem) {
   const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
 
   const handleCartStatus = useCallback(
@@ -25,12 +26,16 @@ function CartItem({ item }: cartItem) {
     cartItemMutate();
   }, [item, cartItemMutate]);
 
-  //   console.log(item);
+  // console.log(item);
   return (
     <div className=" flex border-b-2 py-3 items-start gap-3 justify-start">
-      <div className="relative min-w-[100px] min-h-[100px] ">
+      <Link
+        href={`/products/${item.categories}/${item.title}`}
+        className="relative min-w-[100px] min-h-[100px] "
+        onClick={handle}
+      >
         <Image alt="img" src={item?.thumbnail} fill className="object-cover " />
-      </div>
+      </Link>
       <div className="h-full flex flex-col justify-between">
         <div className="flex flex-col justify-start items-start ">
           <h1 className="capitalize font-semibold text-[15px]">

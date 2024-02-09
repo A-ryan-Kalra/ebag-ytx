@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 interface Categories {
   category?: string;
@@ -12,11 +13,12 @@ function NavCategories({ cartq, category, icon1, switchs }: Categories) {
   return (
     <>
       {!switchs ? (
-        <div
+        <Link
+          href={`/collections/${category?.toLowerCase()}`}
           className={`text-white cursor-pointer group relative  before:bg-[#0e0d0d]  before:h-[2px] before:w-[100%]  before:left-0 before:bottom-0 w-fit before:rounded-full before:inset-x-0 before:absolute before:transform hover:before:origin-left before:origin-right  before:scale-x-0 before:transition before:duration-200 decoration-none no-underline hover:before:scale-x-100 dark:before:bg-black dark:text-black hidden lg:inline-block`}
         >
           <h1 className="text-black">{category}</h1>
-        </div>
+        </Link>
       ) : (
         <div className="cursor-pointer duration-150 transition ease-in-out rounded-full">
           <Icon

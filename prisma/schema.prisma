@@ -31,7 +31,7 @@ model User{
 
  model Categories{
  id  String    @id @default(cuid()) 
- name String? 
+ name String? @unique
  user User? @relation(fields: [userId],references: [id],onDelete: Cascade)
  userId String?
  product Products []
@@ -46,6 +46,7 @@ model Orders{
   quantity Int?
   brand String?
   orderStatus String?
+  categories String?
   thumbnail String?
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt
