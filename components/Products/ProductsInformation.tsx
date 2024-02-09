@@ -44,20 +44,6 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     setDiscountedPrice(getDiscount(item?.discountPercentage));
   }, [id, item]);
 
-  // useEffect(() => {
-  //   // setCartQuant(cartQuant1);
-  //   const timer = setTimeout(() => {
-  //     const cartQuant1 = Number(localStorage.getItem("cart"));
-  //     setCartQ(cartQuant1);
-  //   }, 300);
-  //   return()=>clearTimeout(timer)
-  // }, [cartQuant]);
-
-  // useEffect(() => {
-  //   setCartQuant(cartq);
-  // }, [cartq]);
-
-  console.log(cartQuant, "CartQuantity");
   const getStars = () => {
     const stars = [];
 
@@ -134,7 +120,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
           brand: item?.brand,
           quantity: quant,
         });
-        console.log(res);
+        // console.log(res);
         cartItemMutate();
       } catch (error) {
         console.error(error);

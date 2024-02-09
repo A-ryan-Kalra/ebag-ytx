@@ -22,7 +22,6 @@ function Cart() {
     localStorage.setItem("cart", cartq.toString());
   }, [cartItems, cartq]);
 
-  console.log(cartQuant, "cartQuantity");
   useEffect(() => {
     setCartItems(orderedCarts);
   }, [orderedCarts]);

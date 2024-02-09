@@ -55,7 +55,6 @@ function Navigation() {
     return () => clearTimeout(timer);
   }, [cartQuant, cartq1]);
 
-  console.log(cartQuant);
   useEffect(() => {
     setCartQ1(0);
     cartItems?.forEach((i: any) => setCartQ1((prev) => prev + i.quantity));
