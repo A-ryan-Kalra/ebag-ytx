@@ -8,6 +8,8 @@ import Link from "next/link";
 import filter from "@/public/filters.svg";
 import Image from "next/image";
 import { atom, useAtom } from "jotai";
+import { useSearchParams } from "next/navigation";
+import PagePagination from "@/components/Collections/PagePagination";
 
 const inter = IM_Fell_French_Canon_SC({ subsets: ["latin"], weight: "400" });
 export const filter1 = atom(false);
@@ -19,7 +21,13 @@ function Collection() {
   const { data, mutate, isLoading } = useGetCollectionItems(category as string);
   const [images, setImg] = useState<Array<Object>>();
   const [filterImg, setFilterImg] = useAtom(filter1);
+  const seacrh = useSearchParams();
 
+  const page = seacrh.get("page") ?? "1";
+  const per_page = seacrh.get("per_page") ?? "5";
+  const start = Number(Number(page) - 1) * Number(per_page);
+  const end = start + Number(per_page);
+  // console.log(data?.length / 5);
   useEffect(() => {
     if (id) {
       setCategory(id as string);
@@ -27,9 +35,17 @@ function Collection() {
   }, [id]);
 
   useEffect(() => {
-    setImg(data);
-  }, [data]);
-  // console.log(images);
+    setImg(data?.slice(start, end));
+  }, [data, start, end]);
+
+  // useEffect(() => {
+  //   setImg(images?.slice(start, end));
+  // }, [page, per_page]);
+  // console.log(start, "Start");
+  // console.log(end, "End");
+  // console.log(data?.slice(start, end));
+  // console.log(seacrh.get("page"));
+
   return (
     <>
       <Layout>
@@ -46,7 +62,7 @@ function Collection() {
               <h1
                 className={`${inter.className} capitalize md:text-4xl text-[22px] sm:text-3xl`}
               >
-                {id === "all" ? "Select" : id}
+                {id === "all" ? "all" : id}
               </h1>
             </div>
             <div
@@ -59,11 +75,19 @@ function Collection() {
               </div>
             </div>
           </div>
+
           <div className="grid  lg:grid-cols-3 grid-cols-2 px-3 lg:gap-3 gap-10">
             {images?.map((img: any, index: number) => (
               <CollectionImg key={index} img={img} />
             ))}
           </div>
+          <PagePagination
+            category={category}
+            page={page}
+            per_page={per_page}
+            hasNextPage={end < data?.length}
+            hasPrevPage={start > 0}
+          />
         </div>
       </Layout>
     </>

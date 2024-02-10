@@ -23,7 +23,7 @@ function CollectionImg({ img }: CollectionProps) {
 
   //   console.log(img);
   return (
-    <div className="flex flex-col  hover:rounded-b-xl transition-all duration-300 max-w-fit  ease-in-out hover:shadow-2xl overflow-hidden gap-3 ">
+    <div className="flex flex-col  hover:rounded-b-xl transition-all duration-[0.4s] max-w-fit ease-in-out hover:shadow-cyan-600 hover:shadow-xl overflow-hidden gap-3 ">
       <Link
         href={`/products/${img?.name}/${img.title}`}
         className="lg:w-[20vw] w-[45vw] overflow-hidden relative h-[40vw] lg:h-[20vw] border-2"
