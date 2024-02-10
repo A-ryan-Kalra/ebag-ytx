@@ -7,7 +7,7 @@ function Layout({ children }: { children: ReactNode }) {
       <div className="lg:grid col-span-1 hidden">
         <Sidebar />
       </div>
-      <div className="grid col-span-4 lg:col-span-3  ">{children}</div>
+      <div className="grid col-span-4 lg:col-span-3">{children}</div>
     </div>
   );
 }

@@ -34,6 +34,9 @@ export default async function handler(
             },
           ],
         },
+        include: {
+          product: true,
+        },
       });
     } else {
       categories = await prismadb.categories.findMany({
@@ -42,9 +45,18 @@ export default async function handler(
             startsWith: id,
           },
         },
+        include: {
+          product: true,
+        },
       });
     }
-    return res.status(200).json(categories);
+    let arr: any = [];
+
+    categories.map((ik: any) => {
+      ik.product.filter((i: any) => arr.push({ ...i, name: ik?.name }));
+    });
+
+    return res.status(200).json(arr);
   } catch (error) {
     console.error(error);
     return res.status(409).end();
