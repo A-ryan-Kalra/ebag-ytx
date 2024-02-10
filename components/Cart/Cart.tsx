@@ -11,6 +11,7 @@ import CartItem from "./CartItem";
 function Cart() {
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
   const [bar, setBar] = useState(false);
+  const [animate, setAnimate] = useState(false);
   const [cartq, setCartQ] = useAtom(flagCart);
   const [cartItems, setCartItems] = useState<Array<Object>>();
   const [cartQuant, setCartQuant] = useState<number>(0);
@@ -34,14 +35,30 @@ function Cart() {
     return () => clearTimeout(timer);
   }, [isCartOpened]);
 
-  function handle() {
-    setBar(false);
+  useEffect(() => {
     const timer = setTimeout(() => {
-      setIsCartOpened(!isCartOpened);
-      showScrollbar();
-    }, 1000);
+      setAnimate(true);
+    }, 200);
     return () => clearTimeout(timer);
-  }
+  }, [isCartOpened]);
+
+  const handle = useCallback(() => {
+    setBar(false);
+    // setAnimate(false);
+    // const timer1 = setTimeout(() => {
+    //   setIsCartOpened(!isCartOpened);
+    //   showScrollbar();
+    // }, 1000);
+    const timer = setTimeout(() => {
+      setAnimate(false);
+
+      setTimeout(() => {
+        showScrollbar();
+        setIsCartOpened(!isCartOpened);
+      }, 500);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [setBar, setIsCartOpened, isCartOpened, setAnimate, showScrollbar]);
   // console.log(cartItems?.length);
   return (
     <div
@@ -49,7 +66,9 @@ function Cart() {
       onClick={handle}
     >
       <div
-        className="bg-white shadow-lg w-full md:w-[60%] lg:w-[50%] xl:w-[31%] overflow-y-auto h-full relative ml-auto"
+        className={`${
+          animate ? "translate-x-0" : "translate-x-[700px]"
+        } duration-500 transition-all ease-in-out bg-white shadow-lg w-full md:w-[60%] lg:w-[50%] xl:w-[31%] overflow-y-auto h-full relative ml-auto `}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full h-full flex flex-col">
@@ -70,17 +89,26 @@ function Cart() {
                 />{" "}
                 <span className=" inline-block">{cartq}</span>
               </div>
-              <h1 className="text-[13px] text-center">
-                You're <span className="font-bold">₹500</span> away from free
-                shipping!
-              </h1>
+              {cartItems?.length == 0 || cartItems?.length === undefined ? (
+                <h1 className="text-[13px] text-center">
+                  You're <span className="font-bold">₹500</span> away from free
+                  shipping!
+                </h1>
+              ) : (
+                <h1 className="text-[13px] text-center">
+                  Congrats!<span className="font-bold"> You</span> get free
+                  shipping!
+                </h1>
+              )}
             </div>
           </div>
           <div className="border-2 w-[90%] mx-auto group">
             <div
               className={`border-2 border-black  ${
-                bar ? "scale-x-100" : "scale-x-0"
-              } duration-700 transition-all ease-in-out origin-left w-full`}
+                bar
+                  ? "scale-x-100 duration-[0.5s]"
+                  : "scale-x-0 duration-[0.5s]"
+              }  transition-all ease-in-out origin-left w-full`}
             ></div>
           </div>
           {cartItems?.length === 0 || cartItems === undefined ? (

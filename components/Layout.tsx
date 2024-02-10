@@ -6,7 +6,7 @@ import RegisterModal from "./RegisterModal";
 import Footer from "./Footer";
 import { useAtom } from "jotai";
 import { HamBurgerHandler } from "@/constants/data";
-import MobileNavBar from "./MobileNavBar";
+import MobileNavBar from "./Navbar/MobileNavBar";
 import Cart from "./Cart/Cart";
 import { hideScrollbar, showScrollbar } from "../constants/hidescrollbar";
 

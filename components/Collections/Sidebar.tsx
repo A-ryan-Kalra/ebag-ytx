@@ -32,7 +32,7 @@ function Sidebar() {
         </Link>
         {" /"}
         <h1 className={`${inter.className} capitalize text-4xl`}>
-          {id === "all" ? "Select" : id}
+          {id === "all" ? "All" : id}
         </h1>
       </div>
       <div className="  space-x-3 py-3  flex flex-wrap">

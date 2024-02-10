@@ -21,8 +21,10 @@ import useGetCart from "@/hooks/useGetCarts";
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
 export const cart = atom(false);
+export const animat = atom(false);
 
 function Navigation() {
+  const [animate, setAnimate] = useAtom(animat);
   const { data: session } = useSession();
   const [state, setState] = useState<boolean>(false);
   const [ham, setHam] = useAtom(HamBurgerHandler);
@@ -78,7 +80,15 @@ function Navigation() {
   }, [state]);
 
   const handle = () => {
-    setHam(!ham);
+    if (ham) {
+      setAnimate(false);
+      const timer = setTimeout(() => {
+        setHam(!ham);
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      setHam(!ham);
+    }
   };
   const refe = useRef<HTMLInputElement>(null);
 

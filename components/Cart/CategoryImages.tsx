@@ -14,7 +14,7 @@ interface CategoryImages {
 
 function CategoryImages({ category, name, image }: CategoryImages) {
   const router = useRouter();
-  console.log(category, " category ");
+
   const handler = useCallback(() => {
     router.push(`/products/${category}/${name}`);
   }, [router, category, name]);

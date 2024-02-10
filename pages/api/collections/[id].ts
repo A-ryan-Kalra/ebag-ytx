@@ -38,6 +38,12 @@ export default async function handler(
           product: true,
         },
       });
+    } else if (id === "all") {
+      categories = await prismadb.categories.findMany({
+        include: {
+          product: true,
+        },
+      });
     } else {
       categories = await prismadb.categories.findMany({
         where: {
