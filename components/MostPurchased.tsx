@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import { Swiper as Swiper1 } from "swiper";
 
 import { Rozha_One, Piazzolla } from "next/font/google";
+import Link from "next/link";
 
 const inter = Rozha_One({ subsets: ["latin"], weight: "400" });
 const inter1 = Piazzolla({ subsets: ["latin"], weight: "600" });
@@ -62,8 +63,11 @@ function MostPurchased() {
                 key={index}
                 className="border-2 rounded-xl overflow-hidden max-w-fit   shadow-lg"
               >
-                <div className=" hover:scale-105 duration-500">
-                  <div className="xl:h-[350px] w-[300px] h-[300px] xl:w-[350px]  ">
+                <Link
+                  href={`/products/${item?.category}/${item?.name}`}
+                  className=" "
+                >
+                  <div className="xl:h-[350px] hover:scale-105 duration-500 w-[300px] h-[300px] xl:w-[350px]  ">
                     <Image
                       src={item?.img!}
                       width={350}
@@ -72,15 +76,15 @@ function MostPurchased() {
                       className="object-cover w-full h-full"
                     />
                   </div>
-                </div>
+                </Link>
                 <div
                   className={`${inter1.className} px-3 flex flex-col gap-3 my-3`}
                 >
                   {/* <div onClick={() => swiperRef.current?.slideNext()}>
                     slide
                   </div> */}
-                  <h1 className="text-xl">{item?.name}</h1>
-                  <h1 className="text-xl">{item?.brand}</h1>
+                  <h1 className="text-xl capitalize">{item?.name}</h1>
+                  <h1 className="text-xl capitalize">{item?.brand}</h1>
                 </div>
               </SwiperSlide>
             </div>

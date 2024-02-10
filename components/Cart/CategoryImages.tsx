@@ -29,7 +29,7 @@ function CategoryImages({ category, name, image }: CategoryImages) {
       </div>
       <div className="border-t-2 my-3  h-full">
         <h1
-          className={`text-center font-semibold text-[18px] ${inter.className}`}
+          className={`text-center font-semibold text-[18px] capitalize ${inter.className}`}
         >
           {name}
         </h1>

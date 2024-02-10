@@ -16,13 +16,13 @@ function MiddleSection() {
       </h1>
       <div className="flex gap-5 w-full items-center justify-center">
         <Link
-          href={"/"}
+          href={"/collections/men"}
           className="bg-black shadow-xl rounded-md  hover:bg-white hover:text-black duration-200 ease-in-out hover:border-2 border-2 border-black sm:text-[16px] text-[14px] font-semibold w-[150px] py-2 px-4 text-white"
         >
           <h1 className="text-center">SHOP MEN</h1>
         </Link>
         <Link
-          href={"/"}
+          href={"/collections/women"}
           className="bg-black shadow-xl rounded-md hover:bg-white hover:text-black duration-200 ease-in-out hover:border-2 border-2 border-black sm:text-[16px] text-[14px] font-semibold w-[150px]  py-2 px-4 text-white"
         >
           <h1 className="text-center">SHOP WOMEN</h1>
