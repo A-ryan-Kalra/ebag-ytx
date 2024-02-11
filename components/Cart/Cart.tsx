@@ -22,7 +22,7 @@ function Cart() {
   const [totalMoney, setTotalMoney] = useState<number>(0);
   const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
   const { data: user } = useGetUser();
-  const { data: address, isLoading, mutate } = useGetAddress(user?.id);
+  // const { data: address, isLoading, mutate } = useGetAddress(user?.id);
 
   console.log(delivery);
   useEffect(() => {
@@ -36,8 +36,8 @@ function Cart() {
   }, [cartItems, cartq]);
 
   useEffect(() => {
-    setDelivery(address);
-  }, [address]);
+    user?.address?.forEach((i: any) => setDelivery(i));
+  }, [user]);
 
   useEffect(() => {
     setCartItems(orderedCarts);
@@ -170,7 +170,7 @@ function Cart() {
                 {delivery !== undefined && delivery !== null ? (
                   <Tooltip
                     showArrow={true}
-                    content="Click to update the address"
+                    content="Update the address with a click, or leave it as is"
                     color="primary"
                     className="bg-blue-500 rounded-full text-white p-2"
                   >
