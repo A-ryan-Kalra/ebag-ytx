@@ -10,6 +10,7 @@ import Image from "next/image";
 import { atom, useAtom } from "jotai";
 import { useSearchParams } from "next/navigation";
 import PagePagination from "@/components/Collections/PagePagination";
+import useGetUser from "@/hooks/useGetUser";
 
 const inter = IM_Fell_French_Canon_SC({ subsets: ["latin"], weight: "400" });
 export const filter1 = atom(false);
@@ -33,7 +34,8 @@ function Collection() {
       setCategory(id as string);
     }
   }, [id]);
-
+  const { data: user } = useGetUser();
+  console.log(user);
   useEffect(() => {
     setImg(data?.slice(start, end));
   }, [data, start, end]);

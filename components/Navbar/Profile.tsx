@@ -35,7 +35,6 @@ function Profile({ signOutHandle, session }: ProfileProps) {
     return () => document.body.removeEventListener("click", closeDropDown);
   }, [address]);
 
-  console.log(address);
   return (
     <div className="" ref={profileRef} onClick={() => setProfileClicked(true)}>
       <div className=" text-[13px] cursor-pointer group flex relative">

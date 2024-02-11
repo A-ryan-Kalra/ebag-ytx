@@ -12,12 +12,6 @@ export default async function handler(
     const { id } = req.query;
     const { building, area, zipcode, country } = req.body;
 
-    // console.log(userId);
-    // console.log(building);
-    // console.log(area);
-    // console.log(zipcode);
-    // console.log(country);
-
     let address;
 
     address = await prismadb.address.update({

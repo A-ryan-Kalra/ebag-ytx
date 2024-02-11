@@ -16,14 +16,15 @@ function Cart() {
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
   const [bar, setBar] = useState(false);
   const [animate, setAnimate] = useState(false);
+  const [delivery, setDelivery] = useState<any>();
   const [cartq, setCartQ] = useAtom(flagCart);
   const [cartItems, setCartItems] = useState<Array<Object>>();
   const [totalMoney, setTotalMoney] = useState<number>(0);
   const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
   const { data: user } = useGetUser();
   const { data: address, isLoading, mutate } = useGetAddress(user?.id);
-  console.log(address);
 
+  console.log(delivery);
   useEffect(() => {
     setCartQ(0);
     setTotalMoney(0);
@@ -33,6 +34,10 @@ function Cart() {
     );
     localStorage.setItem("cart", cartq.toString());
   }, [cartItems, cartq]);
+
+  useEffect(() => {
+    setDelivery(address);
+  }, [address]);
 
   useEffect(() => {
     setCartItems(orderedCarts);
@@ -67,7 +72,7 @@ function Cart() {
     }, 500);
     return () => clearTimeout(timer);
   }, [setBar, setIsCartOpened, isCartOpened, setAnimate, showScrollbar]);
-  console.log(address);
+
   return (
     <div
       className={` bg-[#434A4F]/90 overflow-auto fixed inset-0 z-[100] min-h-full `}
@@ -138,64 +143,75 @@ function Cart() {
               </div>
             )}
           </div>
-          <div className="justify-between items-center relative border-t-2 gap-3  mb-1 h-full py-2 flex flex-col ">
-            <div className="flex w-full flex-col px-3 py-1">
-              <div className="flex items-center justify-between">
-                <h1 className="font-semibold">Subtotal</h1>
-                <h1 className="">
-                  ₹
-                  {totalMoney.toLocaleString("en-IN", {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  })}
-                </h1>
+          {cartItems?.length !== 0 && cartItems !== undefined && (
+            <div className="justify-between items-center relative border-t-2 gap-3  mb-1 h-full py-2 flex flex-col ">
+              <div className="flex w-full flex-col px-3 py-1">
+                <div className="flex items-center justify-between">
+                  <h1 className="font-semibold">Subtotal</h1>
+                  <h1 className="">
+                    ₹
+                    {totalMoney.toLocaleString("en-IN", {
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    })}
+                  </h1>
+                </div>
+                <div className="flex items-center border-b-2 my-2 justify-between">
+                  <h1 className="font-semibold">Delivery Charges</h1>
+                  <h1>Free</h1>
+                </div>
               </div>
-              <div className="flex items-center border-b-2 my-2 justify-between">
-                <h1 className="font-semibold">Delivery Charges</h1>
-                <h1>Free</h1>
-              </div>
-            </div>
-            <div className="flex flex-col w-full px-3">
-              <h1 className="font-semibold font-serif">
-                Items will be delivered to below delivery address ↴
-              </h1>
-              {address !== undefined || address !== null ? (
-                <Tooltip
-                  showArrow={true}
-                  content="Click to update the address"
-                  color="primary"
-                  className="bg-blue-500 rounded-full text-white p-2"
-                >
-                  <Link
-                    href={"/address"}
-                    className="flex w-fit flex-wrap font-mono   hover:underline cursor-pointer"
-                    onClick={handle}
+              <div className="flex flex-col w-full px-3">
+                {delivery !== undefined && delivery !== null && (
+                  <h1 className="font-semibold font-serif">
+                    Items will be delivered to below delivery address ↴
+                  </h1>
+                )}
+                {delivery !== undefined && delivery !== null ? (
+                  <Tooltip
+                    showArrow={true}
+                    content="Click to update the address"
+                    color="primary"
+                    className="bg-blue-500 rounded-full text-white p-2"
                   >
-                    <h1>{address?.name},</h1>
-                    <h1>{address?.address},</h1>
-                    <h1>{address?.zipcode},</h1>
-                    <h1>{address?.country}</h1>
-                  </Link>
-                </Tooltip>
-              ) : (
-                <Tooltip
-                  showArrow={true}
-                  content="Click to update the address"
-                  color="primary"
-                  className="bg-blue-500 rounded-full text-white p-2"
-                >
-                  <Link
-                    href={"/address"}
-                    className="flex w-fit flex-wrap font-mono   hover:underline cursor-pointer"
-                    onClick={handle}
-                  ></Link>
-                </Tooltip>
-              )}
+                    <Link
+                      href={"/address"}
+                      className="flex w-fit text-[14px] flex-wrap font-mono   hover:underline cursor-pointer"
+                      onClick={handle}
+                    >
+                      <h1>{delivery?.name},</h1>
+                      <h1>{delivery?.address},</h1>
+                      <h1>{delivery?.zipcode},</h1>
+                      <h1>{delivery?.country}</h1>
+                    </Link>
+                  </Tooltip>
+                ) : (
+                  <Tooltip
+                    showArrow={true}
+                    content="Click to add your delivery address"
+                    color="primary"
+                    className="bg-blue-500 rounded-full text-white p-2"
+                  >
+                    <Link
+                      href={"/address"}
+                      className="flex w-fit flex-wrap font-mono   hover:underline cursor-pointer"
+                      onClick={handle}
+                    >
+                      Register your delivery address first before placing any
+                      orders
+                    </Link>
+                  </Tooltip>
+                )}
+              </div>
+              <button
+                disabled={!delivery}
+                onClick={() => console.log("as")}
+                className="uppercase disabled:cursor-not-allowed bg-black disabled:bg-opacity-70 hover:bg-opacity-75 duration-200 transition-all ease-in-out active:scale-90 text-white font-semibold text-[18px] px-10 py-3"
+              >
+                Proceed to buy
+              </button>
             </div>
-            <button className="uppercase bg-black text-white font-semibold text-[18px] px-10 py-3">
-              Proceed to buy
-            </button>
-          </div>
+          )}
         </div>
       </div>
     </div>

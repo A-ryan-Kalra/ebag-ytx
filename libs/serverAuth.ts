@@ -12,6 +12,9 @@ const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
     where: {
       email: session.user.email,
     },
+    include: {
+      address: true,
+    },
   });
   if (!currentUser) {
     throw new Error("Not signed in");

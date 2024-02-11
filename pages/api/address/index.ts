@@ -9,11 +9,6 @@ export default async function handler(
     res.status(405).end();
   }
   try {
-    // console.log(userId);
-    // console.log(building);
-    // console.log(area);
-    // console.log(zipcode);
-    // console.log(country);
     const { userId } = req.query;
 
     let address;
@@ -23,7 +18,8 @@ export default async function handler(
           userId: userId as string,
         },
       });
-    } else if (req.method === "POST") {
+    }
+    if (req.method === "POST") {
       const { userId, building, area, zipcode, country } = req.body;
 
       address = await prismadb.address.create({

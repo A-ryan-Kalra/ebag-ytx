@@ -12,8 +12,6 @@ function address() {
 
   const { data } = useGetUser();
   const { data: address, isLoading, mutate } = useGetAddress(data?.id);
-  console.log(data);
-  console.log(address);
 
   useEffect(() => {
     setBuilding(address?.name);
@@ -28,13 +26,6 @@ function address() {
     address?.country,
     mutate,
   ]);
-
-  const handle = useCallback(
-    async (e: any) => {
-      e.preventDefault();
-    },
-    [building, area, zipcode, country, data?.id]
-  );
 
   const handleUpdate = useCallback(
     async (e: any) => {
