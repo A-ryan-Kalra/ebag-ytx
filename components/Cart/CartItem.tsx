@@ -18,7 +18,7 @@ function CartItem({ item, handle }: cartItem) {
       });
       cartItemMutate();
     },
-    [item, cartItemMutate]
+    [item, cartItemMutate, orderedCarts]
   );
   const handleDelete = useCallback(async () => {
     const result = await axios.delete(`/api/cartstatus?orderId=${item?.id}`);

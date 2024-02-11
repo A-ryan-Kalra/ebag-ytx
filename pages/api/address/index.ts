@@ -23,8 +23,7 @@ export default async function handler(
           userId: userId as string,
         },
       });
-    }
-    if (req.method === "POST") {
+    } else if (req.method === "POST") {
       const { userId, building, area, zipcode, country } = req.body;
 
       address = await prismadb.address.create({

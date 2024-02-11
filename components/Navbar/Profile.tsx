@@ -11,6 +11,7 @@ function Profile({ signOutHandle, session }: ProfileProps) {
   const [profileClicked, setProfileClicked] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
   const [name, setName] = useState("");
+  const [address, setAddress] = useState(false);
 
   useEffect(() => {
     const spli = session?.user?.name.split(" ");
@@ -19,7 +20,10 @@ function Profile({ signOutHandle, session }: ProfileProps) {
 
   useEffect(() => {
     const closeDropDown = (e: MouseEvent) => {
-      if (
+      if (address) {
+        setProfileClicked(false);
+        setAddress(false);
+      } else if (
         profileRef.current &&
         !profileRef.current.contains(e.target as Node)
       ) {
@@ -29,15 +33,11 @@ function Profile({ signOutHandle, session }: ProfileProps) {
 
     document.body.addEventListener("click", closeDropDown);
     return () => document.body.removeEventListener("click", closeDropDown);
-  }, []);
+  }, [address]);
 
-  // console.log(profileClicked);
+  console.log(address);
   return (
-    <div
-      className=""
-      ref={profileRef}
-      onClick={() => setProfileClicked(!profileClicked)}
-    >
+    <div className="" ref={profileRef} onClick={() => setProfileClicked(true)}>
       <div className=" text-[13px] cursor-pointer group flex relative">
         <h1 className="group-hover:underline">Hi,</h1>
         <span className="capitalize group-hover:underline ">{name}</span>
@@ -62,7 +62,7 @@ function Profile({ signOutHandle, session }: ProfileProps) {
             <Link
               href={"/address"}
               className="w-fit cursor-pointer hover:underline"
-              onClick={() => setProfileClicked(false)}
+              onClick={() => setAddress(true)}
             >
               My Address
             </Link>
