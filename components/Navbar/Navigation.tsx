@@ -17,6 +17,7 @@ import { Icon } from "@iconify/react";
 import useLoginModal from "@/hooks/useLoginModal";
 import { flagCart } from "../Products/ProductsInformation";
 import useGetCart from "@/hooks/useGetCarts";
+import Profile from "./Profile";
 
 const inter = Concert_One({ subsets: ["latin"], weight: "400" });
 const merei = Geologica({ subsets: ["latin"], weight: "400" });
@@ -43,7 +44,7 @@ function Navigation() {
       return 0;
     }
   });
-
+  // console.log(session);
   useEffect(() => {
     // setCartQuant(cartQuant1);
     const timer = setTimeout(() => {
@@ -92,11 +93,15 @@ function Navigation() {
   };
   const refe = useRef<HTMLInputElement>(null);
 
-  const signOutHandle = useCallback(() => {
-    localStorage.removeItem("cart");
+  const signOutHandle = useCallback(
+    (e: any) => {
+      e.stopPropagation();
+      localStorage.removeItem("cart");
 
-    signOut();
-  }, [signOut]);
+      signOut();
+    },
+    [signOut]
+  );
 
   // console.log(cartq);
   return (
@@ -150,19 +155,11 @@ function Navigation() {
           <NavCategories category="FURNITURE" />
           <NavCategories icon1="iconamoon:search" switchs />
 
-          <div className="cursor-pointer flex items-center">
+          <div className=" flex items-center">
             {session ? (
-              <div className=" rounded-full" onClick={signOutHandle}>
-                <Image
-                  alt="img"
-                  width={28}
-                  height={28}
-                  className="object-cover rounded-full"
-                  src={session.user?.image || "/user.png"}
-                />
-              </div>
+              <Profile signOutHandle={signOutHandle} session={session} />
             ) : (
-              <div onClick={login.loginOpen}>
+              <div onClick={login.loginOpen} className="cursor-pointer">
                 <NavCategories icon1="iconamoon:profile-circle-fill" switchs />
               </div>
             )}
