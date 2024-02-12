@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  env: {
+    //RazorPay keys
+    RAZORPAY_KEY: process.env.RAZORPAY_KEY,
+    RAZORPAY_SECRET: process.env.RAZORPAY_SECRET,
+  },
   images: {
     remotePatterns: [
       {

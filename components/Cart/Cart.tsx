@@ -11,6 +11,7 @@ import CartItem from "./CartItem";
 import useGetUser from "@/hooks/useGetUser";
 import useGetAddress from "@/hooks/useGetAddress";
 import Link from "next/link";
+import Button from "./Button";
 
 function Cart() {
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
@@ -22,9 +23,10 @@ function Cart() {
   const [totalMoney, setTotalMoney] = useState<number>(0);
   const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
   const { data: user } = useGetUser();
-  // const { data: address, isLoading, mutate } = useGetAddress(user?.id);
+  const { data: address, isLoading, mutate } = useGetAddress(user?.id);
 
-  console.log(delivery);
+  console.log(address);
+  // console.log(delivery);
   useEffect(() => {
     setCartQ(0);
     setTotalMoney(0);
@@ -203,13 +205,7 @@ function Cart() {
                   </Tooltip>
                 )}
               </div>
-              <button
-                disabled={!delivery}
-                onClick={() => console.log("as")}
-                className="uppercase disabled:cursor-not-allowed bg-black disabled:bg-opacity-70 hover:bg-opacity-75 duration-200 transition-all ease-in-out active:scale-90 text-white font-semibold text-[18px] px-10 py-3"
-              >
-                Proceed to buy
-              </button>
+              <Button delivery={delivery} totalMoney={totalMoney} user={user} />
             </div>
           )}
         </div>
