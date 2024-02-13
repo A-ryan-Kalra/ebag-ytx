@@ -5,13 +5,12 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { Params } from "react-router-dom";
 
 interface ImagesProps {
   [key: string]: any;
 }
 
-function Index({ initialData }: Params) {
+function Index({ initialData }: ImagesProps) {
   // console.log(initialData);
   const router = useRouter();
   const { id } = router.query;
