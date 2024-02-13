@@ -211,6 +211,7 @@ function Cart() {
                 user={user}
                 orderedCarts={cartItems}
                 cartItemMutate={cartItemMutate}
+                handle={handle}
               />
             </div>
           )}

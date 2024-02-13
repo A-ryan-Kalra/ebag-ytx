@@ -57,7 +57,13 @@ function Profile({ signOutHandle, session }: ProfileProps) {
             <h1 className="capitalize text-[13px] font-mono">{name}</h1>
           </div>
           <div className="flex flex-col gap-1 text-blue-600 font-semibold text-[13px] px-3">
-            <h1 className="w-fit cursor-pointer hover:underline">My Orders</h1>
+            <Link
+              href={"/orders"}
+              className="w-fit cursor-pointer hover:underline"
+              onClick={() => setAddress(true)}
+            >
+              My Orders
+            </Link>
             <Link
               href={"/address"}
               className="w-fit cursor-pointer hover:underline"

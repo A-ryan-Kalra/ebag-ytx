@@ -2,6 +2,7 @@ import axios from "axios";
 import { NextApiResponse } from "next";
 import { useRouter } from "next/router";
 import React, { useCallback } from "react";
+import toast from "react-hot-toast";
 interface CustomApiResponse<T = any> extends NextApiResponse<T> {
   razorpay_payment_id?: string; // Add the razorpay_payment_id property
 }
@@ -11,11 +12,12 @@ function Button({
   user,
   orderedCarts,
   cartItemMutate,
+  handle,
 }: any) {
   const router = useRouter();
 
   const orderStatus = useCallback(async () => {
-    const res = await axios.put("/api/orderstatus", {
+    const res = await axios.post("/api/orderstatus", {
       userId: user?.id,
       orderedCarts,
     });
@@ -51,12 +53,19 @@ function Button({
         alert("Collect your payment id: " + response.razorpay_payment_id);
         //alert(response.razorpay_order_id);
         //alert(response.razorpay_signature);
-        orderStatus().then((i: any) => {
-          localStorage.clear();
-          console.log(i);
-          cartItemMutate();
-          // router.reload();
-        });
+        orderStatus()
+          .then((i: any) => {
+            localStorage.clear();
+            console.log(i);
+            toast.success("Order placed successfully");
+            cartItemMutate();
+            router.push("/success");
+          })
+          .catch((er) => {
+            console.error(er);
+            toast.error("Something went wrong");
+          });
+        handle();
       },
       prefill: {
         name: user?.name,
