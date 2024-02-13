@@ -153,8 +153,9 @@ function Navigation() {
         </Link>
         <div className="gap-12 relative hidden lg:flex   ">
           <NavCategories category="FURNITURE" />
-          <NavCategories icon1="iconamoon:search" switchs />
-
+          <div className="">
+            <NavCategories icon1="iconamoon:search" switchs />
+          </div>
           <div className=" flex items-center">
             {session ? (
               <Profile signOutHandle={signOutHandle} session={session} />
