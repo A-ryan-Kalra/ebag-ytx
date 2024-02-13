@@ -130,10 +130,26 @@ function Cart() {
             {cartItems?.length === 0 || cartItems === undefined ? (
               <div className="flex flex-col gap-6 justify-center items-center my-10">
                 <h1 className="font-semibold">Your Cart is Empty</h1>
-                <CartButton name="shop men's" />
-                <CartButton name="shop wommen's" />
-                <CartButton name="shop Electronics" />
-                <CartButton name="shop Furniture" />
+                <CartButton
+                  handle={handle}
+                  category={"men"}
+                  name="shop men's"
+                />
+                <CartButton
+                  handle={handle}
+                  category={"women"}
+                  name="shop wommen's"
+                />
+                <CartButton
+                  handle={handle}
+                  category={"electronics"}
+                  name="shop Electronics"
+                />
+                <CartButton
+                  handle={handle}
+                  category={"furniture"}
+                  name="shop Furniture"
+                />
               </div>
             ) : (
               <div className="relative  h-full ">

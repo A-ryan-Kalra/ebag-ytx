@@ -1,19 +1,17 @@
 import Link from "next/link";
 import React from "react";
-import { cart } from "../Navbar/Navigation";
-import { useAtom } from "jotai";
 
 interface Props {
   name?: string;
+  category?: string;
+  handle?: () => void;
 }
-function CartButton({ name }: Props) {
-  const [isCartOpened, setIsCartOpened] = useAtom(cart);
-
+function CartButton({ name, category, handle }: Props) {
   return (
     <Link
-      href={"/"}
+      href={`/collections/${category}`}
       className=" w-1/2 border-2 hover:bg-black hover:text-white duration-200 transition-all ease-in-out border-black py-2"
-      onClick={() => setIsCartOpened(!isCartOpened)}
+      onClick={handle}
     >
       <div className="uppercase text-center font-semibold">{name}</div>
     </Link>
