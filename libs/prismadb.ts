@@ -23,4 +23,4 @@ const prismadb = globalThis.prisma ?? prismaClientSingleton();
 
 export default prismadb;
 
-if (process.env.NODE_ENV !== "production") globalThis.prisma = prisma;
+if (process.env.NODE_ENV !== "production") globalThis.prisma = prismadb;
