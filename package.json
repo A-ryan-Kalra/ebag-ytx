@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx prisma generate"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -35,7 +36,6 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
-    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.11.10",
     "@types/react": "^18",
     "@types/react-dom": "^18",
