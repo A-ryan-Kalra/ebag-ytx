@@ -25,7 +25,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
   const [discountedPrice, setDiscountedPrice] = useState("");
   const [cartq, setCartQ] = useAtom(flagCart);
   const [number, setNumber] = useState<number>(0);
-  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
+  // const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
 
   const [cartQuant, setCartQuant] = useState<number>(() => {
     try {
@@ -122,7 +122,6 @@ function ProductsInformation({ item }: { [key: string]: any }) {
           categories: category,
         });
         // console.log(res);
-        cartItemMutate();
       } catch (error) {
         console.error(error);
       }
@@ -131,7 +130,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     setCartQuant,
     category,
     login.loginOpen,
-    cartItemMutate,
+
     session,
     item?.title,
     item?.discountPercentage,
@@ -140,13 +139,22 @@ function ProductsInformation({ item }: { [key: string]: any }) {
     cartQuant,
     getDiscount,
   ]);
-
+  // console.log(orderedCarts?.categories);
   return (
     <div className="flex-1   px-5">
       <div className="flex h-full flex-col items-start justify-start  xl:px-20 mx-auto gap-3">
         <div className="w-full hidden lg:inline-block">
-          <LinkTag name="Home" /> /<LinkTag name={category} /> /{""}
-          <LinkTag name={product} />/{" "}
+          <LinkTag name="Home" categories={"/"} /> /
+          <LinkTag
+            name={category}
+            categories={`/collections/${item?.name}`}
+          />{" "}
+          /{""}
+          <LinkTag
+            name={product}
+            categories={`/products/${item?.name}/${item?.title}`}
+          />
+          /{" "}
         </div>
         <div className="border-b-2 py-2 w-full flex flex-col gap-1">
           <h1 className="capitalize text-[35px] font-semibold">

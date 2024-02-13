@@ -23,9 +23,9 @@ function Cart() {
   const [totalMoney, setTotalMoney] = useState<number>(0);
   const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
   const { data: user } = useGetUser();
-  const { data: address, isLoading, mutate } = useGetAddress(user?.id);
+  // const { data: address, isLoading, mutate } = useGetAddress(user?.id);
 
-  console.log(address);
+  // console.log(address);
   // console.log(delivery);
   useEffect(() => {
     setCartQ(0);
@@ -205,7 +205,13 @@ function Cart() {
                   </Tooltip>
                 )}
               </div>
-              <Button delivery={delivery} totalMoney={totalMoney} user={user} />
+              <Button
+                delivery={delivery}
+                totalMoney={totalMoney}
+                user={user}
+                orderedCarts={cartItems}
+                cartItemMutate={cartItemMutate}
+              />
             </div>
           )}
         </div>

@@ -76,12 +76,12 @@ function Products({ item }: ItemProps) {
         ))}
       </div>
 
-      <div className="w-full max-lg:gap-3 max-lg:flex max-lg:flex-col ">
+      <div className="w-full  max-lg:gap-3 max-lg:flex max-lg:flex-col ">
         <div className="w-full lg:hidden">
           <LinkTag name="Home" /> /<LinkTag name={category} /> /{""}
           <LinkTag name={product} /> /{" "}
         </div>
-        <div className=" border-2 shadow-lg w-[90vw] h-[95vw]   relative lg:w-[600px] lg:h-[600px] overflow-hidden">
+        <div className=" border-2 shadow-lg w-[90vw] h-[95vw]   relative lg:w-[600px] lg:max-h-[600px] overflow-hidden">
           <div className=" overflow-hidden ">
             <Swiper
               slidesPerView={1}
@@ -99,7 +99,7 @@ function Products({ item }: ItemProps) {
                 clickable: true,
               }}
               modules={[Navigation, Pagination]}
-              className=" object-cover w-full"
+              className=" object-cover h-full w-full"
             >
               {img?.map((i: string, index: number) => (
                 <SwiperSlide key={index} className="w-full h-full">

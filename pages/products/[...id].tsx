@@ -21,11 +21,12 @@ function Index({ initialData }: Params) {
     id?.[0] as string,
     id?.[1] as string
   );
-
   useEffect(() => {
-    data?.map((i: any) => i?.product?.map((i: any) => setItem(i)));
+    data?.map((iK: any) =>
+      iK?.product?.map((i: any) => setItem({ ...i, name: iK?.name }))
+    );
   }, [data]);
-  // console.log(item);
+
   // let selected = dress?.filter((produc) => {
   //   return produc?.product.some((item) =>
   //     item?.title.includes("frock gold printed")

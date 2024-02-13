@@ -1,13 +1,29 @@
 import axios from "axios";
 import { NextApiResponse } from "next";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useCallback } from "react";
 interface CustomApiResponse<T = any> extends NextApiResponse<T> {
   razorpay_payment_id?: string; // Add the razorpay_payment_id property
 }
-function Button({ delivery, totalMoney, user }: any) {
+function Button({
+  delivery,
+  totalMoney,
+  user,
+  orderedCarts,
+  cartItemMutate,
+}: any) {
   const router = useRouter();
-  console.log(process.env.RAZORPAY_KEY, "button");
+
+  const orderStatus = useCallback(async () => {
+    const res = await axios.put("/api/orderstatus", {
+      userId: user?.id,
+      orderedCarts,
+    });
+    console.log(res);
+  }, [user?.id, orderedCarts]);
+
+  console.log(orderedCarts);
+
   const makePayment = async (totalMoney: number) => {
     //console.log("here...");
 
@@ -20,7 +36,7 @@ function Button({ delivery, totalMoney, user }: any) {
     const data = await axios
       .post("/api/razorpay", { totalMoney })
       .then((i) => i.data);
-    console.log(user);
+    // console.log(user);
     var options = {
       key: process.env.RAZORPAY_KEY, // Enter the Key ID generated from the Dashboard
       name: "Aryan Kalra",
@@ -35,9 +51,12 @@ function Button({ delivery, totalMoney, user }: any) {
         alert("Collect your payment id: " + response.razorpay_payment_id);
         //alert(response.razorpay_order_id);
         //alert(response.razorpay_signature);
-        localStorage.clear();
-
-        router.reload();
+        orderStatus().then((i: any) => {
+          localStorage.clear();
+          console.log(i);
+          cartItemMutate();
+          // router.reload();
+        });
       },
       prefill: {
         name: user?.name,
