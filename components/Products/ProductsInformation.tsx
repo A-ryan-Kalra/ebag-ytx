@@ -143,7 +143,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
   return (
     <div className="flex-1   px-5">
       <div className="flex h-full flex-col items-start justify-start  xl:px-20 mx-auto gap-3">
-        <div className="w-full hidden lg:inline-block">
+        <div className="w-full hidden lg:inline-block  ">
           <LinkTag name="Home" categories={"/"} /> /
           <LinkTag
             name={category}

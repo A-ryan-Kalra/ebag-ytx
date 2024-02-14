@@ -18,9 +18,11 @@ import { useRouter } from "next/router";
 
 interface ItemProps {
   item?: Array<String>;
+  name?: string;
+  title?: string;
 }
 
-function Products({ item }: ItemProps) {
+function Products({ item, name, title }: ItemProps) {
   const [selected, setSelected] = useState<SetStateAction<string>>("");
   const [img, setImg] = useState<any>([]);
   const [category, setCategory] = useState("");
@@ -29,7 +31,7 @@ function Products({ item }: ItemProps) {
   const router = useRouter();
   const { id } = router.query;
   const ref = useRef<Swiper1>();
-
+  console.log(item);
   useEffect(() => {
     if (id && id?.length > 0) {
       setCategory(id[0]);
@@ -60,7 +62,7 @@ function Products({ item }: ItemProps) {
   useEffect(() => {
     ref.current?.slideTo(activeIndex);
   }, [activeIndex]);
-
+  console.log(category, "category");
   return (
     <div className="w-full  flex lg:items-start items-center justify-center lg:justify-start  flex-1">
       <div className="lg:flex hidden  justify-between gap-3 items-center px-7 flex-col">
@@ -77,9 +79,13 @@ function Products({ item }: ItemProps) {
       </div>
 
       <div className="w-full  max-lg:gap-3 max-lg:flex max-lg:flex-col ">
-        <div className="w-full lg:hidden">
-          <LinkTag name="Home" /> /<LinkTag name={category} /> /{""}
-          <LinkTag name={product} /> /{" "}
+        <div className="w-full lg:hidden ">
+          <LinkTag name="Home" categories={"/"} /> /
+          <LinkTag name={category} categories={`/collections/${name}`} /> /{""}
+          <LinkTag
+            name={product}
+            categories={`/products/${name}/${title}`}
+          /> /{" "}
         </div>
         <div className=" border-2 shadow-lg w-[90vw] h-[95vw]   relative lg:w-[600px] lg:max-h-[600px] overflow-hidden">
           <div className=" overflow-hidden ">

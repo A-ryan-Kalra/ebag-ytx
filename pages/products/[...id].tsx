@@ -16,10 +16,13 @@ function Index({ initialData }: ImagesProps) {
   const { id } = router.query;
 
   const [item, setItem] = useState<{ [key: string]: any }>();
-  const { data, error, isLoading, mutate } = useGetProducts(
+  const { data, error, isLoading, mutate, isValidating } = useGetProducts(
     id?.[0] as string,
     id?.[1] as string
   );
+  // console.log(isLoading, "isLoading");
+  // console.log(isValidating, "isValidating");
+  // console.log(error, "error");
   useEffect(() => {
     data?.map((iK: any) =>
       iK?.product?.map((i: any) => setItem({ ...i, name: iK?.name }))
@@ -31,11 +34,12 @@ function Index({ initialData }: ImagesProps) {
   //     item?.title.includes("frock gold printed")
   //   );
   // });
-
+  console.log(item);
+  console.log("item");
   return (
     <div className="min-h-screen  max-w-[1620px] mx-auto">
       <div className="flex  lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">
-        <Products item={item?.images} />
+        <Products item={item?.images} name={item?.name} title={item?.title} />
         <ProductsInformation item={item} />
       </div>
     </div>

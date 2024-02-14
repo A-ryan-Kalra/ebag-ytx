@@ -2,7 +2,7 @@ import fetcher from "@/libs/fetcher";
 import useSWR from "swr";
 
 const useGetProducts = (categoryId?: string, title?: string) => {
-  const { data, error, isLoading, mutate } = useSWR(
+  const { data, error, isLoading, mutate, isValidating } = useSWR(
     `/api/products/${categoryId}/${title}`,
     fetcher,
     {
@@ -15,6 +15,7 @@ const useGetProducts = (categoryId?: string, title?: string) => {
     error,
     isLoading,
     mutate,
+    isValidating,
   };
 };
 
