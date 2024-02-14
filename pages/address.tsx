@@ -40,7 +40,7 @@ function address() {
             country: country,
           });
           toast.success("Address added");
-          console.log(res);
+          // console.log(res);
         } else {
           const res = await axios.put(`/api/address/${data?.id}`, {
             building: building,
@@ -48,7 +48,7 @@ function address() {
             zipcode: zipcode,
             country: country,
           });
-          console.log(res);
+          // console.log(res);
           toast.success("Address updated");
         }
         mutate();

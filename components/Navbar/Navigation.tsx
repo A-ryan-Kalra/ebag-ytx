@@ -124,17 +124,17 @@ function Navigation() {
           className="flex flex-col lg:hidden duration-200 z-[100] justify-center items-center"
         >
           <span
-            className={`bg-black duration-200 transition-all dark:bg-white block h-0.5 w-6 rounded-sm  ${
+            className={`bg-black duration-200 transition-all block h-0.5 w-6 rounded-sm  ${
               ham ? "rotate-45 translate-y-1" : "-translate-y-0.5"
             }`}
           ></span>
           <span
-            className={`bg-black  duration-200 transition-all my-0.5 dark:bg-white block h-0.5 w-6 rounded-sm ${
+            className={`bg-black  duration-200 transition-all my-0.5  block h-0.5 w-6 rounded-sm ${
               ham ? "opacity-0" : "opacity-100"
             }`}
           ></span>
           <span
-            className={`bg-black duration-200 transition-all dark:bg-white block h-0.5 w-6 rounded-sm  ${
+            className={`bg-black duration-200 transition-all  block h-0.5 w-6 rounded-sm  ${
               ham ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
             }`}
           ></span>

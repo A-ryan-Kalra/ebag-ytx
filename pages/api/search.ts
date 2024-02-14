@@ -10,7 +10,7 @@ export default async function handler(
   }
   try {
     const { search } = req.query;
-    console.log(search);
+    // console.log(search);
 
     const searchedItem = await prismadb.products.findMany({
       where: {
@@ -52,7 +52,7 @@ export default async function handler(
         arr.push({ ...rest, name: item?.name })
       );
     });
-    console.log(arr);
+    // console.log(arr);
     // console.log("selected");
     // console.log(searchedItem);
 

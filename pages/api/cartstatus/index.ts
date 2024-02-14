@@ -12,7 +12,7 @@ export default async function handler(
   try {
     const { currentUser } = await serverAuth(req, res);
     const { orderId } = req.query;
-    console.log(orderId, " orderID");
+    // console.log(orderId, " orderID");
     const orderDeleted = await prismadb.orders.delete({
       where: {
         id: orderId as string,

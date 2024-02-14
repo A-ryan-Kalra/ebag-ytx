@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 function SearchImg({ item }: { item: any }) {
-  console.log(item);
+  // console.log(item);
   return (
     <div className="flex flex-col hover:border-2 duration-300 transition-all ease-in-out hover:shadow-xl hover:shadow-cyan-400  hover:border-cyan-500 border-2 border-transparent">
       <Link

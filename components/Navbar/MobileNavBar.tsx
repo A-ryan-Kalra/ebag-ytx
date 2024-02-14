@@ -19,7 +19,7 @@ function MobileNavBar() {
   const { data: session, status } = useSession();
 
   const [animate1, setAnimate1] = useState(false);
-  console.log(acc);
+  // console.log(acc);
   useEffect(() => {
     const timer = setTimeout(() => {
       if (gloglaNav) {
@@ -57,7 +57,7 @@ function MobileNavBar() {
     }, 300);
     return () => clearTimeout(timer);
   }, [setAnimate, gloglaNav, setGlobalNav]);
-  console.log(animate1, "animate1");
+  // console.log(animate1, "animate1");
   return (
     <div
       className={`${

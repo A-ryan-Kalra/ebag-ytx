@@ -20,7 +20,7 @@ function search() {
     }
   }, [search]);
 
-  console.log(searchedItems);
+  // console.log(searchedItems);
 
   return (
     <div className=" min-h-[70vh]">

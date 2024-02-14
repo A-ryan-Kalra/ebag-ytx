@@ -21,10 +21,10 @@ function Button({
       userId: user?.id,
       orderedCarts,
     });
-    console.log(res);
+    // console.log(res);
   }, [user?.id, orderedCarts]);
 
-  console.log(orderedCarts);
+  // console.log(orderedCarts);
 
   const makePayment = async (totalMoney: number) => {
     //console.log("here...");
@@ -56,7 +56,7 @@ function Button({
         orderStatus()
           .then((i: any) => {
             localStorage.clear();
-            console.log(i);
+            // console.log(i);
             toast.success("Order placed successfully");
             cartItemMutate();
             router.push("/success");

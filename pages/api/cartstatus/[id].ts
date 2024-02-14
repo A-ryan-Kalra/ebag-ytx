@@ -13,8 +13,8 @@ export default async function handler(
     const { currentUser } = await serverAuth(req, res);
     const { id } = req.query;
     const { status } = req.body;
-    console.log(status);
-    console.log(id);
+    // console.log(status);
+    // console.log(id);
     const order = await prismadb.orders.findUnique({
       where: {
         id: id as string,
@@ -35,7 +35,7 @@ export default async function handler(
         quantity: order.quantity,
       },
     });
-    console.log(order);
+    // console.log(order);
     res.status(200).json(order);
   } catch (error) {
     console.error(error);
