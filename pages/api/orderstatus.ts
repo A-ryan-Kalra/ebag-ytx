@@ -10,9 +10,9 @@ export default async function handler(
   }
   try {
     const { userId, orderedCarts } = req.body;
-    console.log(userId);
-    console.log(orderedCarts);
-    console.log("orderedCarts");
+    // console.log(userId);
+    // console.log(orderedCarts);
+    // console.log("orderedCarts");
 
     let statusCompleted: any = [];
     orderedCarts.map(async (i: any) => {
@@ -35,10 +35,10 @@ export default async function handler(
         userId,
       },
     });
-    console.log(statusCompleted);
-    console.log("statusCompleted");
-    console.log(order);
-    console.log("order");
+    // console.log(statusCompleted);
+    // console.log("statusCompleted");
+    // console.log(order);
+    // console.log("order");
     // console.log("userId");
     res.status(200).json({ statusCompleted, order });
   } catch (error) {

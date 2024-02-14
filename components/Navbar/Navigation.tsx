@@ -121,7 +121,7 @@ function Navigation() {
         </div>
         <button
           onClick={handle}
-          className="flex flex-col lg:hidden duration-200 justify-center items-center"
+          className="flex flex-col lg:hidden duration-200 z-[100] justify-center items-center"
         >
           <span
             className={`bg-black duration-200 transition-all dark:bg-white block h-0.5 w-6 rounded-sm  ${
@@ -153,9 +153,9 @@ function Navigation() {
         </Link>
         <div className="gap-12 relative hidden lg:flex   ">
           <NavCategories category="FURNITURE" />
-          <div className="">
+          <Link href={"/search"} className="">
             <NavCategories icon1="iconamoon:search" switchs />
-          </div>
+          </Link>
           <div className=" flex items-center">
             {session ? (
               <Profile signOutHandle={signOutHandle} session={session} />
@@ -186,7 +186,10 @@ function Navigation() {
         </div>
       </div>
       <div className="px-3 lg:hidden my-2">
-        <div className="rounded-full px-3 items-center bg-black/10 flex">
+        <Link
+          href={"/search"}
+          className="rounded-full px-3 items-center bg-black/10 flex"
+        >
           <div
             className="flex items-center"
             onClick={(e) => refe.current?.focus()}
@@ -200,10 +203,10 @@ function Navigation() {
           <input
             type="text"
             ref={refe}
-            placeholder="Enter Search Term"
+            placeholder="Find Products..."
             className="rounded-full outline-none w-full font-semibold px-3 bg-transparent  "
           />
-        </div>
+        </Link>
       </div>
     </nav>
   );

@@ -5,8 +5,9 @@ async function seedProducts() {
   try {
     await prismadb.products.create({
       data: {
-        title: "iPhone 9",
-        description: "An apple mobile which is nothing like apple",
+        title: "iPhone 9".toLowerCase(),
+        description:
+          "An apple mobile which is nothing like apple".toLowerCase(),
         price: 549,
         discountPercentage: 12.96,
         rating: 4.69,
@@ -14,7 +15,7 @@ async function seedProducts() {
         brand: "Apple",
         category: {
           create: {
-            name: "smartphones",
+            name: "smartphones".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
@@ -28,9 +29,9 @@ async function seedProducts() {
 
     await prismadb.products.create({
       data: {
-        title: "iPhone X",
+        title: "iPhone X".toLowerCase(),
         description:
-          "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...".toLowerCase(),
         price: 899,
         discountPercentage: 17.94,
         rating: 4.44,
@@ -38,7 +39,7 @@ async function seedProducts() {
         brand: "Apple",
         category: {
           create: {
-            name: "smartphones",
+            name: "smartphones".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
@@ -51,9 +52,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Samsung Universe 9",
+        title: "Samsung Universe 9".toLowerCase(),
         description:
-          "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "Samsung's new variant which goes beyond Galaxy to the Universe".toLowerCase(),
         price: 1249,
         discountPercentage: 15.46,
         rating: 4.09,
@@ -61,7 +62,7 @@ async function seedProducts() {
         brand: "Samsung",
         category: {
           create: {
-            name: "smartphones",
+            name: "smartphones".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
@@ -70,8 +71,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "OPPOF19",
-        description: "OPPO F19 is officially announced on April 2021.",
+        title: "OPPOF19".toLowerCase(),
+        description:
+          "OPPO F19 is officially announced on April 2021.".toLowerCase(),
         price: 280,
         discountPercentage: 17.91,
         rating: 4.3,
@@ -79,7 +81,7 @@ async function seedProducts() {
         brand: "OPPO",
         category: {
           create: {
-            name: "smartphones",
+            name: "smartphones".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg",
@@ -92,9 +94,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Huawei P30",
+        title: "Huawei P30".toLowerCase(),
         description:
-          "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+          "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.".toLowerCase(),
         price: 499,
         discountPercentage: 10.58,
         rating: 4.09,
@@ -102,7 +104,7 @@ async function seedProducts() {
         brand: "Huawei",
         category: {
           create: {
-            name: "smartphones",
+            name: "smartphones".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
@@ -115,9 +117,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "MacBook Pro",
+        title: "MacBook Pro".toLowerCase(),
         description:
-          "MacBook Pro 2021 with mini-LED display may launch between September, November",
+          "MacBook Pro 2021 with mini-LED display may launch between September, November".toLowerCase(),
         price: 1749,
         discountPercentage: 11.02,
         rating: 4.57,
@@ -125,7 +127,7 @@ async function seedProducts() {
         brand: "Apple",
         category: {
           create: {
-            name: "laptops",
+            name: "laptops".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/6/thumbnail.png",
@@ -138,9 +140,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Samsung Galaxy Book",
+        title: "Samsung Galaxy Book".toLowerCase(),
         description:
-          "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+          "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched".toLowerCase(),
         price: 1499,
         discountPercentage: 4.15,
         rating: 4.25,
@@ -148,7 +150,7 @@ async function seedProducts() {
         brand: "Samsung",
         category: {
           create: {
-            name: "laptops",
+            name: "laptops".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg",
@@ -161,9 +163,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Microsoft Surface Laptop 4",
+        title: "Microsoft Surface Laptop 4".toLowerCase(),
         description:
-          "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.".toLowerCase(),
         price: 1499,
         discountPercentage: 10.23,
         rating: 4.43,
@@ -171,7 +173,7 @@ async function seedProducts() {
         brand: "Microsoft Surface",
         category: {
           create: {
-            name: "laptops",
+            name: "laptops".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg",
@@ -184,9 +186,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Infinix INBOOK",
+        title: "Infinix INBOOK".toLowerCase(),
         description:
-          "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+          "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty".toLowerCase(),
         price: 1099,
         discountPercentage: 11.83,
         rating: 4.54,
@@ -194,7 +196,7 @@ async function seedProducts() {
         brand: "Infinix",
         category: {
           create: {
-            name: "laptops",
+            name: "laptops".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
@@ -207,9 +209,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "HP Pavilion 15-DK1056WM",
+        title: "HP Pavilion 15-DK1056WM".toLowerCase(),
         description:
-          "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+          "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10".toLowerCase(),
         price: 1099,
         discountPercentage: 6.18,
         rating: 4.43,
@@ -217,7 +219,7 @@ async function seedProducts() {
         brand: "HP Pavilion",
         category: {
           create: {
-            name: "laptops",
+            name: "laptops".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg",
@@ -230,9 +232,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Plant Hanger For Home",
+        title: "Plant Hanger For Home".toLowerCase(),
         description:
-          "Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf",
+          "Boho Decor Plant Hanger For Home Wall Decoration Macrame Wall Hanging Shelf".toLowerCase(),
         price: 41,
         discountPercentage: 17.86,
         rating: 4.08,
@@ -240,7 +242,7 @@ async function seedProducts() {
         brand: "Boho Decor",
         category: {
           create: {
-            name: "home-decoration",
+            name: "home-decoration".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/26/thumbnail.jpg",
@@ -253,9 +255,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Flying Wooden Bird",
+        title: "Flying Wooden Bird".toLowerCase(),
         description:
-          "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm",
+          "Package Include 6 Birds with Adhesive Tape Shape: 3D Shaped Wooden Birds Material: Wooden MDF, Laminated 3.5mm".toLowerCase(),
         price: 51,
         discountPercentage: 15.58,
         rating: 4.41,
@@ -263,7 +265,7 @@ async function seedProducts() {
         brand: "Flying Wooden",
         category: {
           create: {
-            name: "home-decoration",
+            name: "home-decoration".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/27/thumbnail.webp",
@@ -276,9 +278,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "3D Embellishment Art Lamp",
+        title: "3D Embellishment Art Lamp".toLowerCase(),
         description:
-          "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)",
+          "3D led lamp sticker Wall sticker 3d wall art light on/off button  cell operated (included)".toLowerCase(),
         price: 20,
         discountPercentage: 16.49,
         rating: 4.82,
@@ -286,7 +288,7 @@ async function seedProducts() {
         brand: "LED Lights",
         category: {
           create: {
-            name: "home-decoration",
+            name: "home-decoration".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/28/thumbnail.jpg",
@@ -299,9 +301,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Handcraft Chinese style",
+        title: "Handcraft Chinese style".toLowerCase(),
         description:
-          "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate",
+          "Handcraft Chinese style art luxury palace hotel villa mansion home decor ceramic vase with brass fruit plate".toLowerCase(),
         price: 60,
         discountPercentage: 15.34,
         rating: 4.44,
@@ -309,7 +311,7 @@ async function seedProducts() {
         brand: "luxury palace",
         category: {
           create: {
-            name: "home-decoration",
+            name: "home-decoration".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/29/thumbnail.webp",
@@ -324,9 +326,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Key Holder",
+        title: "Key Holder".toLowerCase(),
         description:
-          "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality",
+          "Attractive DesignMetallic materialFour key hooksReliable & DurablePremium Quality".toLowerCase(),
         price: 30,
         discountPercentage: 2.92,
         rating: 4.92,
@@ -334,7 +336,7 @@ async function seedProducts() {
         brand: "Golden",
         category: {
           create: {
-            name: "home-decoration",
+            name: "home-decoration".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/30/thumbnail.jpg",
@@ -347,9 +349,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Mornadi Velvet Bed",
+        title: "Mornadi Velvet Bed".toLowerCase(),
         description:
-          "Mornadi Velvet Bed Base with Headboard Slats Support Classic Style Bedroom Furniture Bed Set",
+          "Mornadi Velvet Bed Base with Headboard Slats Support Classic Style Bedroom Furniture Bed Set".toLowerCase(),
         price: 40,
         discountPercentage: 17,
         rating: 4.16,
@@ -357,7 +359,7 @@ async function seedProducts() {
         brand: "Furniture Bed Set",
         category: {
           create: {
-            name: "furniture",
+            name: "furniture".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/31/thumbnail.jpg",
@@ -370,9 +372,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Sofa for Coffe Cafe",
+        title: "Sofa for Coffe Cafe".toLowerCase(),
         description:
-          "Ratttan Outdoor furniture Set Waterproof  Rattan Sofa for Coffe Cafe",
+          "Ratttan Outdoor furniture Set Waterproof  Rattan Sofa for Coffe Cafe".toLowerCase(),
         price: 50,
         discountPercentage: 15.59,
         rating: 4.74,
@@ -380,7 +382,7 @@ async function seedProducts() {
         brand: "Ratttan Outdoor",
         category: {
           create: {
-            name: "furniture",
+            name: "furniture".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/32/thumbnail.jpg",
@@ -393,9 +395,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "3 Tier Corner Shelves",
+        title: "3 Tier Corner Shelves".toLowerCase(),
         description:
-          "3 Tier Corner Shelves | 3 PCs Wall Mount Kitchen Shelf | Floating Bedroom Shelf",
+          "3 Tier Corner Shelves | 3 PCs Wall Mount Kitchen Shelf | Floating Bedroom Shelf".toLowerCase(),
         price: 700,
         discountPercentage: 17,
         rating: 4.31,
@@ -403,7 +405,7 @@ async function seedProducts() {
         brand: "Kitchen Shelf",
         category: {
           create: {
-            name: "furniture",
+            name: "furniture".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/33/thumbnail.jpg",
@@ -416,9 +418,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Plastic Table",
+        title: "Plastic Table".toLowerCase(),
         description:
-          "V﻿ery good quality plastic table for multi purpose now in reasonable price",
+          "V﻿ery good quality plastic table for multi purpose now in reasonable price".toLowerCase(),
         price: 50,
         discountPercentage: 4,
         rating: 4.01,
@@ -426,7 +428,7 @@ async function seedProducts() {
         brand: "Multi Purpose",
         category: {
           create: {
-            name: "furniture",
+            name: "furniture".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/34/thumbnail.jpg",
@@ -439,9 +441,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "3 DOOR PORTABLE",
+        title: "3 DOOR PORTABLE".toLowerCase(),
         description:
-          "Material: Stainless Steel and Fabric  Item Size: 110 cm x 45 cm x 175 cm Package Contents: 1 Storage Wardrobe",
+          "Material: Stainless Steel and Fabric  Item Size: 110 cm x 45 cm x 175 cm Package Contents: 1 Storage Wardrobe".toLowerCase(),
         price: 41,
         discountPercentage: 7.98,
         rating: 4.06,
@@ -449,7 +451,7 @@ async function seedProducts() {
         brand: "AmnaMart",
         category: {
           create: {
-            name: "furniture",
+            name: "furniture".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/35/thumbnail.jpg",
@@ -462,9 +464,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "NIGHT SUIT",
+        title: "NIGHT SUIT".toLowerCase(),
         description:
-          "NIGHT SUIT RED MICKY MOUSE..  For Girls. Fantastic Suits.",
+          "NIGHT SUIT RED MICKY MOUSE..  For Girls. Fantastic Suits.".toLowerCase(),
         price: 55,
         discountPercentage: 15.05,
         rating: 4.65,
@@ -472,7 +474,7 @@ async function seedProducts() {
         brand: "RED MICKY MOUSE..",
         category: {
           create: {
-            name: "womens-dresses",
+            name: "womens-dresses".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/41/thumbnail.webp",
@@ -485,9 +487,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Stiched Kurta plus trouser",
+        title: "Stiched Kurta plus trouser".toLowerCase(),
         description:
-          "FABRIC: LILEIN CHEST: 21 LENGHT: 37 TROUSER: (38) :ARABIC LILEIN",
+          "FABRIC: LILEIN CHEST: 21 LENGHT: 37 TROUSER: (38) :ARABIC LILEIN".toLowerCase(),
         price: 80,
         discountPercentage: 15.37,
         rating: 4.05,
@@ -495,7 +497,7 @@ async function seedProducts() {
         brand: "Digital Printed",
         category: {
           create: {
-            name: "womens-dresses",
+            name: "womens-dresses".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/42/thumbnail.jpg",
@@ -508,9 +510,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "frock gold printed",
+        title: "frock gold printed".toLowerCase(),
         description:
-          "Ghazi fabric long frock gold printed ready to wear stitched collection (G992)",
+          "Ghazi fabric long frock gold printed ready to wear stitched collection (G992)".toLowerCase(),
         price: 600,
         discountPercentage: 15.55,
         rating: 4.31,
@@ -518,7 +520,7 @@ async function seedProducts() {
         brand: "Ghazi Fabric",
         category: {
           create: {
-            name: "womens-dresses",
+            name: "womens-dresses".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/43/thumbnail.jpg",
@@ -531,9 +533,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Ladies Multicolored Dress",
+        title: "Ladies Multicolored Dress".toLowerCase(),
         description:
-          "This classy shirt for women gives you a gorgeous look on everyday wear and specially for semi-casual wears.",
+          "This classy shirt for women gives you a gorgeous look on everyday wear and specially for semi-casual wears.".toLowerCase(),
         price: 79,
         discountPercentage: 16.88,
         rating: 4.03,
@@ -541,7 +543,7 @@ async function seedProducts() {
         brand: "Ghazi Fabric",
         category: {
           create: {
-            name: "womens-dresses",
+            name: "womens-dresses".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/44/thumbnail.jpg",
@@ -554,9 +556,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Malai Maxi Dress",
+        title: "Malai Maxi Dress".toLowerCase(),
         description:
-          "Ready to wear, Unique design according to modern standard fashion, Best fitting ,Imported stuff",
+          "Ready to wear, Unique design according to modern standard fashion, Best fitting ,Imported stuff".toLowerCase(),
         price: 50,
         discountPercentage: 5.07,
         rating: 4.67,
@@ -564,7 +566,7 @@ async function seedProducts() {
         brand: "IELGY",
         category: {
           create: {
-            name: "womens-dresses",
+            name: "womens-dresses".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/45/thumbnail.jpg",
@@ -577,9 +579,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "women's shoes",
+        title: "women's shoes".toLowerCase(),
         description:
-          "Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber",
+          "Close: Lace, Style with bottom: Increased inside, Sole Material: Rubber".toLowerCase(),
         price: 40,
         discountPercentage: 16.96,
         rating: 4.14,
@@ -587,7 +589,7 @@ async function seedProducts() {
         brand: "IELGY fashion",
         category: {
           create: {
-            name: "womens-shoes",
+            name: "womens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/46/thumbnail.jpg",
@@ -600,9 +602,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Sneaker shoes",
+        title: "Sneaker shoes".toLowerCase(),
         description:
-          "Synthetic Leather Casual Sneaker shoes for Women/girls Sneakers For Women",
+          "Synthetic Leather Casual Sneaker shoes for Women/girls Sneakers For Women".toLowerCase(),
         price: 120,
         discountPercentage: 10.37,
         rating: 4.19,
@@ -610,7 +612,7 @@ async function seedProducts() {
         brand: "Synthetic Leather",
         category: {
           create: {
-            name: "womens-shoes",
+            name: "womens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/47/thumbnail.jpeg",
@@ -623,9 +625,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Women Strip Heel",
+        title: "Women Strip Heel".toLowerCase(),
         description:
-          "Features: Flip-flops, Mid Heel, Comfortable, Striped Heel, Antiskid, Striped",
+          "Features: Flip-flops, Mid Heel, Comfortable, Striped Heel, Antiskid, Striped".toLowerCase(),
         price: 40,
         discountPercentage: 10.83,
         rating: 4.02,
@@ -633,7 +635,7 @@ async function seedProducts() {
         brand: "Sandals Flip Flops",
         category: {
           create: {
-            name: "womens-shoes",
+            name: "womens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/48/thumbnail.jpg",
@@ -646,9 +648,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Chappals & Shoe Ladies Metallic",
+        title: "Chappals & Shoe Ladies Metallic".toLowerCase(),
         description:
-          "Womens Chappals & Shoe Ladies Metallic Tong Thong Sandal Flat Summer 2020 Maasai Sandals",
+          "Womens Chappals & Shoe Ladies Metallic Tong Thong Sandal Flat Summer 2020 Maasai Sandals".toLowerCase(),
         price: 23,
         discountPercentage: 2.62,
         rating: 4.72,
@@ -656,7 +658,7 @@ async function seedProducts() {
         brand: "Maasai Sandals",
         category: {
           create: {
-            name: "womens-shoes",
+            name: "womens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/49/thumbnail.jpg",
@@ -669,9 +671,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Women Shoes",
+        title: "Women Shoes".toLowerCase(),
         description:
-          "2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes",
+          "2020 New Arrivals Genuine Leather Fashion Trend Platform Summer Women Shoes".toLowerCase(),
         price: 36,
         discountPercentage: 16.87,
         rating: 4.33,
@@ -679,7 +681,7 @@ async function seedProducts() {
         brand: "Arrivals Genuine",
         category: {
           create: {
-            name: "womens-shoes",
+            name: "womens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/50/thumbnail.jpg",
@@ -692,9 +694,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "half sleeves T shirts",
+        title: "half sleeves T shirts".toLowerCase(),
         description:
-          "Many store is creating new designs and trend every month and every year. Daraz.pk have a beautiful range of men fashion brands",
+          "Many store is creating new designs and trend every month and every year. Daraz.pk have a beautiful range of men fashion brands".toLowerCase(),
         price: 23,
         discountPercentage: 12.76,
         rating: 4.26,
@@ -702,7 +704,7 @@ async function seedProducts() {
         brand: "Vintage Apparel",
         category: {
           create: {
-            name: "mens-shirts",
+            name: "mens-shirts".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/51/thumbnail.jpg",
@@ -715,9 +717,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "FREE FIRE T Shirt",
+        title: "FREE FIRE T Shirt".toLowerCase(),
         description:
-          "quality and professional print - It doesn't just look high quality, it is high quality.",
+          "quality and professional print - It doesn't just look high quality, it is high quality.".toLowerCase(),
         price: 10,
         discountPercentage: 14.72,
         rating: 4.52,
@@ -725,7 +727,7 @@ async function seedProducts() {
         brand: "FREE FIRE",
         category: {
           create: {
-            name: "mens-shirts",
+            name: "mens-shirts".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/52/thumbnail.jpg",
@@ -738,8 +740,8 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "printed high quality T shirts",
-        description: "Brand: vintage Apparel ,Export quality",
+        title: "printed high quality T shirts".toLowerCase(),
+        description: "Brand: vintage Apparel ,Export quality".toLowerCase(),
         price: 35,
         discountPercentage: 7.54,
         rating: 4.89,
@@ -747,7 +749,7 @@ async function seedProducts() {
         brand: "Vintage Apparel",
         category: {
           create: {
-            name: "mens-shirts",
+            name: "mens-shirts".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/53/thumbnail.jpg",
@@ -760,9 +762,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Pubg Printed Graphic T-Shirt",
+        title: "Pubg Printed Graphic T-Shirt".toLowerCase(),
         description:
-          "Product Description Features: 100% Ultra soft Polyester Jersey. Vibrant & colorful printing on front. Feels soft as cotton without ever cracking",
+          "Product Description Features: 100% Ultra soft Polyester Jersey. Vibrant & colorful printing on front. Feels soft as cotton without ever cracking".toLowerCase(),
         price: 46,
         discountPercentage: 16.44,
         rating: 4.62,
@@ -770,7 +772,7 @@ async function seedProducts() {
         brand: "The Warehouse",
         category: {
           create: {
-            name: "mens-shirts",
+            name: "mens-shirts".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/54/thumbnail.jpg",
@@ -783,8 +785,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Money Heist Printed Summer T Shirts",
-        description: "Fabric Jercy, Size: M & L Wear Stylish Dual Stiched",
+        title: "Money Heist Printed Summer T Shirts".toLowerCase(),
+        description:
+          "Fabric Jercy, Size: M & L Wear Stylish Dual Stiched".toLowerCase(),
         price: 66,
         discountPercentage: 15.97,
         rating: 4.9,
@@ -792,7 +795,7 @@ async function seedProducts() {
         brand: "The Warehouse",
         category: {
           create: {
-            name: "mens-shirts",
+            name: "mens-shirts".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/55/thumbnail.jpg",
@@ -805,9 +808,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Sneakers Joggers Shoes",
+        title: "Sneakers Joggers Shoes".toLowerCase(),
         description:
-          "Gender: Men , Colors: Same as DisplayedCondition: 100% Brand New",
+          "Gender: Men , Colors: Same as DisplayedCondition: 100% Brand New".toLowerCase(),
         price: 40,
         discountPercentage: 12.57,
         rating: 4.38,
@@ -815,7 +818,7 @@ async function seedProducts() {
         brand: "Sneakers",
         category: {
           create: {
-            name: "mens-shoes",
+            name: "mens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/56/thumbnail.jpg",
@@ -828,9 +831,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Loafers for men",
+        title: "Loafers for men".toLowerCase(),
         description:
-          "Men Shoes - Loafers for men - Rubber Shoes - Nylon Shoes - Shoes for men - Moccassion - Pure Nylon (Rubber) Expot Quality.",
+          "Men Shoes - Loafers for men - Rubber Shoes - Nylon Shoes - Shoes for men - Moccassion - Pure Nylon (Rubber) Expot Quality.".toLowerCase(),
         price: 47,
         discountPercentage: 10.91,
         rating: 4.91,
@@ -838,7 +841,7 @@ async function seedProducts() {
         brand: "Rubber",
         category: {
           create: {
-            name: "mens-shoes",
+            name: "mens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/57/thumbnail.jpg",
@@ -851,9 +854,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "formal offices shoes",
+        title: "formal offices shoes".toLowerCase(),
         description:
-          "Pattern Type: Solid, Material: PU, Toe Shape: Pointed Toe ,Outsole Material: Rubber",
+          "Pattern Type: Solid, Material: PU, Toe Shape: Pointed Toe ,Outsole Material: Rubber".toLowerCase(),
         price: 57,
         discountPercentage: 12,
         rating: 4.41,
@@ -861,7 +864,7 @@ async function seedProducts() {
         brand: "The Warehouse",
         category: {
           create: {
-            name: "mens-shoes",
+            name: "mens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/58/thumbnail.jpg",
@@ -874,9 +877,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Spring and summershoes",
+        title: "Spring and summershoes".toLowerCase(),
         description:
-          "Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;",
+          "Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;".toLowerCase(),
         price: 20,
         discountPercentage: 8.71,
         rating: 4.33,
@@ -884,7 +887,7 @@ async function seedProducts() {
         brand: "Sneakers",
         category: {
           create: {
-            name: "mens-shoes",
+            name: "mens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/59/thumbnail.jpg",
@@ -897,9 +900,9 @@ async function seedProducts() {
     });
     await prismadb.products.create({
       data: {
-        title: "Stylish Casual Jeans Shoes",
+        title: "Stylish Casual Jeans Shoes".toLowerCase(),
         description:
-          "High Quality ,Stylish design ,Comfortable wear ,FAshion ,Durable",
+          "High Quality ,Stylish design ,Comfortable wear ,FAshion ,Durable".toLowerCase(),
         price: 58,
         discountPercentage: 7.55,
         rating: 4.55,
@@ -907,7 +910,7 @@ async function seedProducts() {
         brand: "Sneakers",
         category: {
           create: {
-            name: "mens-shoes",
+            name: "mens-shoes".toLowerCase(),
           },
         },
         thumbnail: "https://cdn.dummyjson.com/product-images/60/thumbnail.jpg",
