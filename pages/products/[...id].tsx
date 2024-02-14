@@ -34,8 +34,8 @@ function Index({ initialData }: ImagesProps) {
   //     item?.title.includes("frock gold printed")
   //   );
   // });
-  console.log(item);
-  console.log("item");
+  // console.log(item);
+  // console.log("item");
   return (
     <div className="min-h-screen  max-w-[1620px] mx-auto">
       <div className="flex  lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">

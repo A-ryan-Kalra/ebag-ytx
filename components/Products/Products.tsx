@@ -31,7 +31,7 @@ function Products({ item, name, title }: ItemProps) {
   const router = useRouter();
   const { id } = router.query;
   const ref = useRef<Swiper1>();
-  console.log(item);
+  // console.log(item);
   useEffect(() => {
     if (id && id?.length > 0) {
       setCategory(id[0]);
@@ -62,7 +62,7 @@ function Products({ item, name, title }: ItemProps) {
   useEffect(() => {
     ref.current?.slideTo(activeIndex);
   }, [activeIndex]);
-  console.log(category, "category");
+  // console.log(category, "category");
   return (
     <div className="w-full  flex lg:items-start items-center justify-center lg:justify-start  flex-1">
       <div className="lg:flex hidden  justify-between gap-3 items-center px-7 flex-col">
