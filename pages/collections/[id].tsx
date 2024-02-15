@@ -49,7 +49,7 @@ function Collection() {
 
   useMemo(() => {
     setImg(memoizedData?.slice(start, end));
-  }, [memoizedData, category]);
+  }, [memoizedData, category, start, end]);
   // useEffect(() => {
   //   setImg(images?.slice(start, end));
   // }, [page, per_page]);

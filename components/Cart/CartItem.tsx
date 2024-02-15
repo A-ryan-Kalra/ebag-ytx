@@ -27,19 +27,11 @@ function CartItem({ item, handle }: cartItem) {
   const [loadScreen, setLoadScreen] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadScreen(false);
-    }, 2500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  console.log(isValidating);
-  useEffect(() => {
     setLoad(false);
     setClose(false);
-    // console.log(load, item?.title);
+    //  item?.title);
   }, [orderedCarts, cartItemMutate]);
-  // console.log(load, item?.title);
+  //  item?.title);
 
   const handleCartStatus = useCallback(
     async (str?: string) => {
@@ -58,6 +50,15 @@ function CartItem({ item, handle }: cartItem) {
     cartItemMutate();
   }, [item, cartItemMutate, setClose]);
 
+  useEffect(() => {
+    if (orderedCarts.length > 0) {
+      const timer = setTimeout(() => {
+        setLoadScreen(false);
+      }, 2500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   if (loadScreen) {
     return (
       <div className=" relative min-h-full flex items-center bg-opacity-50 justify-center bg-white z-[100] w-full">
@@ -70,7 +71,7 @@ function CartItem({ item, handle }: cartItem) {
       </div>
     );
   }
-  console.log(isValidating);
+
   return (
     <div className=" flex border-b-2 py-3 items-start gap-3 justify-start relative">
       {close && (

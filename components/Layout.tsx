@@ -28,7 +28,9 @@ function Layout({ children }: { children: ReactNode }) {
       <Navigation />
       {gloglaNav && <MobileNavBar />}
       {isCartOpened && <Cart />}
+
       <div>{children}</div>
+
       <Footer />
     </div>
   );

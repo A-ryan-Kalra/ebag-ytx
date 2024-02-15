@@ -28,11 +28,10 @@ function Cart() {
     isValidating,
   } = useGetCart();
   const { data: user } = useGetUser();
+  // console.log(orderedCarts);
   // console.log(isValidating);
   // const { data: address, isLoading, mutate } = useGetAddress(user?.id);
 
-  // console.log(address);
-  // console.log(delivery);
   useEffect(() => {
     setCartQ(0);
     setTotalMoney(0);
@@ -40,8 +39,11 @@ function Cart() {
     cartItems?.forEach((i: any) =>
       setTotalMoney((prev) => prev + i?.price * i?.quantity)
     );
+
     localStorage.setItem("cart", cartq.toString());
   }, [cartItems, cartq]);
+
+  // console.log(orderedCarts);
 
   useEffect(() => {
     user?.address?.forEach((i: any) => setDelivery(i));
@@ -51,7 +53,6 @@ function Cart() {
     setCartItems(orderedCarts);
     cartItemMutate();
   }, [orderedCarts, cartItemMutate]);
-  // console.log(cartItems);
 
   useEffect(() => {
     const timer = setTimeout(() => {
