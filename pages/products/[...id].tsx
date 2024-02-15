@@ -5,6 +5,7 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 interface ImagesProps {
   [key: string]: any;
@@ -36,12 +37,27 @@ function Index({ initialData }: ImagesProps) {
   // });
   // console.log(item);
   // console.log("item");
+
   return (
     <div className="min-h-screen  max-w-[1620px] mx-auto">
-      <div className="flex  lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">
-        <Products item={item?.images} name={item?.name} title={item?.title} />
-        <ProductsInformation item={item} />
-      </div>
+      {!isLoading ? (
+        <div className="flex  lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">
+          <Products item={item?.images} name={item?.name} title={item?.title} />
+          <ProductsInformation item={item} />
+        </div>
+      ) : (
+        <div className="flex  justify-center items-center relative min-h-[80vh]">
+          <ScaleLoader
+            height={40}
+            width={7}
+            radius={2}
+            margin={2}
+            color="#36d7b7"
+            speedMultiplier={2}
+            className="max-lg:translate-y-[-25%]  mx-auto relative max-lg:bottom-[25%] "
+          />
+        </div>
+      )}
     </div>
   );
 }

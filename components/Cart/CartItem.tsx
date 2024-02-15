@@ -3,32 +3,86 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { MouseEventHandler, useCallback, useState } from "react";
+import React, {
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface cartItem {
   [key: string]: any;
 }
 function CartItem({ item, handle }: cartItem) {
-  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
+  const {
+    data: orderedCarts,
+    mutate: cartItemMutate,
+    isLoading,
+    isValidating,
+  } = useGetCart();
+
+  const [load, setLoad] = useState(false);
+  const [close, setClose] = useState(false);
+  const [loadScreen, setLoadScreen] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadScreen(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  console.log(isValidating);
+  useEffect(() => {
+    setLoad(false);
+    setClose(false);
+    // console.log(load, item?.title);
+  }, [orderedCarts, cartItemMutate]);
+  // console.log(load, item?.title);
 
   const handleCartStatus = useCallback(
     async (str?: string) => {
+      setLoad(true);
       const res = await axios.put(`/api/cartstatus/${item?.id}`, {
         status: str,
       });
       cartItemMutate();
     },
-    [item, cartItemMutate, orderedCarts]
+    [item?.id, cartItemMutate, orderedCarts, setLoad]
   );
+
   const handleDelete = useCallback(async () => {
+    setClose(true);
     const result = await axios.delete(`/api/cartstatus?orderId=${item?.id}`);
-
     cartItemMutate();
-  }, [item, cartItemMutate]);
+  }, [item, cartItemMutate, setClose]);
 
-  // console.log(item);
+  if (loadScreen) {
+    return (
+      <div className=" relative min-h-full flex items-center bg-opacity-50 justify-center bg-white z-[100] w-full">
+        <ClipLoader
+          size={40}
+          color="#32b79c"
+          speedMultiplier={2}
+          className="max-lg:translate-y-[65%] bottom-[15%] mx-auto relative max-lg:bottom-[15%] "
+        />
+      </div>
+    );
+  }
+  console.log(isValidating);
   return (
-    <div className=" flex border-b-2 py-3 items-start gap-3 justify-start">
+    <div className=" flex border-b-2 py-3 items-start gap-3 justify-start relative">
+      {close && (
+        <div className="absolute top-0 min-h-full flex items-center bg-opacity-50 justify-center bg-white z-[100] w-full">
+          <ClipLoader
+            size={40}
+            color="#32b79c"
+            speedMultiplier={2}
+            className="max-lg:translate-y-[65%] bottom-[15%] mx-auto relative max-lg:bottom-[15%] "
+          />
+        </div>
+      )}
       <Link
         href={`/products/${item.categories}/${item.title}`}
         className="relative min-w-[100px] min-h-[100px] "
@@ -51,9 +105,21 @@ function CartItem({ item, handle }: cartItem) {
               width={20}
             />
           </div>
-          <span className="text-[15px] cursor-default font-bold">
-            {item?.quantity}
-          </span>
+          {!load ? (
+            <span className="text-[15px] cursor-default font-bold">
+              {item?.quantity}
+            </span>
+          ) : (
+            <div className=" flex items-center relative  ">
+              <ClipLoader
+                size={18}
+                color="#36d7b7"
+                speedMultiplier={2}
+                className="max-lg:translate-y-[65%] bottom-[15%] mx-auto relative max-lg:bottom-[15%] "
+              />
+            </div>
+          )}
+
           <div onClick={() => handleCartStatus("plus")}>
             <Icon
               icon="ic:round-plus"

@@ -21,8 +21,14 @@ function Cart() {
   const [cartq, setCartQ] = useAtom(flagCart);
   const [cartItems, setCartItems] = useState<Array<Object>>();
   const [totalMoney, setTotalMoney] = useState<number>(0);
-  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
+  const {
+    data: orderedCarts,
+    mutate: cartItemMutate,
+    isLoading,
+    isValidating,
+  } = useGetCart();
   const { data: user } = useGetUser();
+  // console.log(isValidating);
   // const { data: address, isLoading, mutate } = useGetAddress(user?.id);
 
   // console.log(address);

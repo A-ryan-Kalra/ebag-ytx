@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { IM_Fell_French_Canon_SC } from "next/font/google";
 import useGetAllCollectionItems from "@/hooks/useGetAllCollectionItems";
 import { useRouter } from "next/router";
@@ -13,9 +13,12 @@ function Sidebar() {
   const [category, setCategory] = useState<Array<Object>>();
   const { data, error, isLoading, mutate } = useGetAllCollectionItems();
   const [tag, setTag] = useState("");
-  useEffect(() => {
-    setCategory(data);
-  }, [data]);
+  const memoizedData = useMemo(() => data, [data, id]);
+
+  useMemo(() => {
+    setCategory(memoizedData);
+  }, [memoizedData]);
+
   useEffect(() => {
     setTag(id as string);
   }, [id]);
