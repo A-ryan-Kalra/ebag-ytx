@@ -25,6 +25,7 @@ function CartItem({ item, handle }: cartItem) {
   const [load, setLoad] = useState(false);
   const [close, setClose] = useState(false);
   const [loadScreen, setLoadScreen] = useState(true);
+  // console.log(localStorage.getItem("cart"));
 
   useEffect(() => {
     setLoad(false);
@@ -36,9 +37,14 @@ function CartItem({ item, handle }: cartItem) {
   const handleCartStatus = useCallback(
     async (str?: string) => {
       setLoad(true);
-      const res = await axios.put(`/api/cartstatus/${item?.id}`, {
-        status: str,
-      });
+      try {
+        const res = await axios.put(`/api/cartstatus/${item?.id}`, {
+          status: str,
+        });
+      } catch (error) {
+        console.error(error);
+      }
+
       cartItemMutate();
     },
     [item?.id, cartItemMutate, orderedCarts, setLoad]
@@ -46,17 +52,19 @@ function CartItem({ item, handle }: cartItem) {
 
   const handleDelete = useCallback(async () => {
     setClose(true);
-    const result = await axios.delete(`/api/cartstatus?orderId=${item?.id}`);
+    try {
+      const result = await axios.delete(`/api/cartstatus?orderId=${item?.id}`);
+    } catch (error) {
+      console.error(error);
+    }
     cartItemMutate();
   }, [item, cartItemMutate, setClose]);
 
   useEffect(() => {
-    if (orderedCarts.length > 0) {
-      const timer = setTimeout(() => {
-        setLoadScreen(false);
-      }, 2500);
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => {
+      setLoadScreen(false);
+    }, 2500);
+    return () => clearTimeout(timer);
   }, []);
 
   if (loadScreen) {

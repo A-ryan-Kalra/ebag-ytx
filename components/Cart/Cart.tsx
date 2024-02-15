@@ -12,6 +12,7 @@ import useGetUser from "@/hooks/useGetUser";
 import useGetAddress from "@/hooks/useGetAddress";
 import Link from "next/link";
 import Button from "./Button";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Cart() {
   const [isCartOpened, setIsCartOpened] = useAtom(cart);
@@ -28,9 +29,20 @@ function Cart() {
     isValidating,
   } = useGetCart();
   const { data: user } = useGetUser();
-  // console.log(orderedCarts);
-  // console.log(isValidating);
-  // const { data: address, isLoading, mutate } = useGetAddress(user?.id);
+
+  const [loadScreen, setLoadScreen] = useState(false);
+
+  useEffect(() => {
+    const tl = Number(localStorage.getItem("cart")) > 0 ? true : false;
+    setLoadScreen(tl);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadScreen(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [loadScreen]);
 
   useEffect(() => {
     setCartQ(0);
@@ -93,7 +105,7 @@ function Cart() {
         } duration-500 transition-all ease-in-out bg-white shadow-lg w-full md:w-[60%] lg:w-[50%] xl:w-[480px] overflow-y-auto min-h-screen relative ml-auto `}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-full  min-h-screen justify-between flex flex-col">
+        <div className="w-full relative  min-h-screen justify-between flex flex-col">
           <div>
             <div className="flex items-center p-2 relative">
               <div className="cursor-pointer active:scale-75" onClick={handle}>
@@ -168,6 +180,16 @@ function Cart() {
               </div>
             )}
           </div>
+          {loadScreen && orderedCarts.length === 0 && (
+            <div className=" absolute top-[72px] min-h-[70vh] flex items-center  justify-center bg-white z-[100] w-full">
+              <ClipLoader
+                size={50}
+                color="#32b79c"
+                speedMultiplier={2}
+                className="max-lg:translate-y-[65%] bottom-[15%] mx-auto relative max-lg:bottom-[15%] "
+              />
+            </div>
+          )}
           {cartItems?.length !== 0 && cartItems !== undefined && (
             <div className="justify-between items-center relative border-t-2 gap-3  mb-1 h-full py-2 flex flex-col ">
               <div className="flex w-full flex-col px-3 py-1">
