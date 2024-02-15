@@ -217,7 +217,7 @@ function Cart() {
                 {delivery !== undefined && delivery !== null ? (
                   <Tooltip
                     showArrow={true}
-                    content="Update the address with a click, or leave it as is"
+                    content="Update the address with a click, or leave it as it is"
                     color="primary"
                     className="bg-blue-500 rounded-full text-white p-2"
                   >
