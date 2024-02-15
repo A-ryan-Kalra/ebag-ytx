@@ -200,12 +200,12 @@ function Navigation() {
               width={15}
             />
           </div>
-          <input
-            type="text"
+          <h1
             ref={refe}
-            placeholder="Find Products..."
-            className="rounded-full outline-none w-full font-semibold px-3 bg-transparent  "
-          />
+            className="rounded-full text-[14px] outline-none w-full font-semibold px-3 bg-transparent  "
+          >
+            Find products...
+          </h1>
         </Link>
       </div>
     </nav>
