@@ -42,10 +42,6 @@ function Collection() {
   // }, [data, start, end]);
 
   const memoizedData = useMemo(() => data, [category, data]);
-  console.log(memoizedData);
-  console.log("memoizedData");
-  console.log(images);
-  console.log("images");
 
   useMemo(() => {
     setImg(memoizedData?.slice(start, end));
