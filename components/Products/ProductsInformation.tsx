@@ -11,6 +11,7 @@ import axios from "axios";
 import { signIn, signOut, useSession } from "next-auth/react";
 import useLoginModal from "@/hooks/useLoginModal";
 import useGetCart from "@/hooks/useGetCarts";
+import { BeatLoader, ClipLoader } from "react-spinners";
 
 export const flagCart = atom(0);
 function ProductsInformation({ item }: { [key: string]: any }) {
@@ -25,6 +26,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
   const [discountedPrice, setDiscountedPrice] = useState("");
   const [cartq, setCartQ] = useAtom(flagCart);
   const [number, setNumber] = useState<number>(0);
+  const [animate, setAnimate] = useState(false);
   // const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
 
   const [cartQuant, setCartQuant] = useState<number>(() => {
@@ -35,6 +37,13 @@ function ProductsInformation({ item }: { [key: string]: any }) {
       return 0;
     }
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimate(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [animate]);
 
   useEffect(() => {
     if (id && id?.length > 0) {
@@ -99,6 +108,7 @@ function ProductsInformation({ item }: { [key: string]: any }) {
   };
   // console.log(number);
   const handle = useCallback(async () => {
+    setAnimate(true);
     if (!session) {
       login.loginOpen();
     } else {
@@ -193,10 +203,21 @@ function ProductsInformation({ item }: { [key: string]: any }) {
           </h1>
         </div>
         <button
-          className="bg-black text-white py-3 w-full duration-200 transition-all ease-in-out border-2 border-black hover:bg-white hover:text-black active:scale-90 "
+          disabled={animate}
+          className="bg-black relative   text-white py-3 w-full duration-200 transition-all ease-in-out border-2 border-black hover:bg-white hover:text-black active:scale-90 "
           onClick={handle}
         >
           ADD TO CART
+          {animate && (
+            <div className="h-full bg-white  w-full flex items-center top-0 absolute  ">
+              <ClipLoader
+                size={35}
+                color="#36d7b7"
+                speedMultiplier={1}
+                className=" mx-auto "
+              />
+            </div>
+          )}
         </button>
       </div>
     </div>
