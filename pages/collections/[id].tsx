@@ -30,7 +30,7 @@ function Collection() {
   const start = Number(Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
   // console.log(data?.length / 5);
-  console.log(isLoading);
+
   useEffect(() => {
     if (id) {
       setCategory(id as string);

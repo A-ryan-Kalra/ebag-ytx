@@ -33,11 +33,6 @@ function Cart() {
   const [loadScreen, setLoadScreen] = useState(false);
 
   useEffect(() => {
-    const tl = Number(localStorage.getItem("cart")) > 0 ? true : false;
-    setLoadScreen(tl);
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => {
       setLoadScreen(false);
     }, 3000);
@@ -45,14 +40,14 @@ function Cart() {
   }, [loadScreen]);
 
   useEffect(() => {
-    setCartQ(0);
+    const tl = cartq > 0 ? true : false;
+    setLoadScreen(tl);
     setTotalMoney(0);
-    cartItems?.forEach((i: any) => setCartQ((prev) => prev + i.quantity));
     cartItems?.forEach((i: any) =>
       setTotalMoney((prev) => prev + i?.price * i?.quantity)
     );
 
-    localStorage.setItem("cart", cartq.toString());
+    // localStorage.setItem("cart", cartq.toString());
   }, [cartItems, cartq]);
 
   // console.log(orderedCarts);
@@ -96,7 +91,7 @@ function Cart() {
 
   return (
     <div
-      className={` bg-[#434A4F]/90 overflow-auto fixed inset-0 z-[100] min-h-full `}
+      className={` bg-[#434A4F]/90 overflow-auto fixed inset-0 z-[200] min-h-full `}
       onClick={handle}
     >
       <div

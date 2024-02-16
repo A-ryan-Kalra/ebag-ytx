@@ -1,6 +1,7 @@
 import useGetCart from "@/hooks/useGetCarts";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import axios from "axios";
+import { useAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 import React, {
@@ -10,6 +11,7 @@ import React, {
   useState,
 } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import { flagCart } from "../Products/ProductsInformation";
 
 interface cartItem {
   [key: string]: any;
@@ -25,40 +27,68 @@ function CartItem({ item, handle }: cartItem) {
   const [load, setLoad] = useState(false);
   const [close, setClose] = useState(false);
   const [loadScreen, setLoadScreen] = useState(true);
-  // console.log(localStorage.getItem("cart"));
 
   useEffect(() => {
     setLoad(false);
     setClose(false);
-    //  item?.title);
   }, [orderedCarts, cartItemMutate]);
-  //  item?.title);
+
+  const [cartq, setCartQ] = useAtom(flagCart);
 
   const handleCartStatus = useCallback(
     async (str?: string) => {
-      setLoad(true);
       try {
-        const res = await axios.put(`/api/cartstatus/${item?.id}`, {
-          status: str,
-        });
+        if (str === "minus") {
+          if (item.quantity > 1) {
+            if (!isValidating) {
+              setLoad(true);
+              const res = await axios.put(`/api/cartstatus/${item?.id}`, {
+                status: str,
+              });
+              cartItemMutate();
+              localStorage.setItem("cart", `${cartq - 1}`);
+              setCartQ((prev) => prev - 1);
+            }
+            return 0;
+          }
+        } else {
+          setLoad(true);
+
+          const res = await axios.put(`/api/cartstatus/${item?.id}`, {
+            status: str,
+          });
+
+          localStorage.setItem("cart", `${cartq + 1}`);
+          setCartQ((prev) => prev + 1);
+          cartItemMutate();
+        }
       } catch (error) {
         console.error(error);
       }
-
-      cartItemMutate();
     },
-    [item?.id, cartItemMutate, orderedCarts, setLoad]
+    [
+      item?.id,
+      item.quantity,
+      cartItemMutate,
+      isValidating,
+      orderedCarts,
+      setLoad,
+      setCartQ,
+      cartq,
+    ]
   );
 
   const handleDelete = useCallback(async () => {
     setClose(true);
     try {
       const result = await axios.delete(`/api/cartstatus?orderId=${item?.id}`);
+      localStorage.setItem("cart", `${cartq - item?.quantity}`);
+      setCartQ((prev) => prev - item?.quantity);
     } catch (error) {
       console.error(error);
     }
     cartItemMutate();
-  }, [item, cartItemMutate, setClose]);
+  }, [item, setCartQ, cartItemMutate, setClose]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -107,13 +137,17 @@ function CartItem({ item, handle }: cartItem) {
           <h1 className="font-mono">{item?.brand}</h1>
         </div>
         <div className="flex items-center border-2 gap-3  w-fit">
-          <div onClick={() => handleCartStatus("minus")}>
+          <button
+            disabled={isValidating || load || close}
+            className=" disabled:cursor-default"
+            onClick={() => handleCartStatus("minus")}
+          >
             <Icon
               icon="ic:round-minus"
               className="text-gray-400 hover:text-black duration-200 transition-all ease-in-out cursor-pointer"
               width={20}
             />
-          </div>
+          </button>
           {!load ? (
             <span className="text-[15px] cursor-default font-bold">
               {item?.quantity}
@@ -129,13 +163,17 @@ function CartItem({ item, handle }: cartItem) {
             </div>
           )}
 
-          <div onClick={() => handleCartStatus("plus")}>
+          <button
+            disabled={isValidating || load || close}
+            className=" disabled:cursor-default"
+            onClick={() => handleCartStatus("plus")}
+          >
             <Icon
               icon="ic:round-plus"
               className="text-gray-400 hover:text-black duration-200 transition-all ease-in-out cursor-pointer"
               width={20}
             />
-          </div>
+          </button>
         </div>
       </div>
       <div className="flex h-full ml-auto flex-col justify-between items-center">

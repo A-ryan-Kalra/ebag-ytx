@@ -57,6 +57,16 @@ function MobileNavBar() {
     }, 300);
     return () => clearTimeout(timer);
   }, [setAnimate, gloglaNav, setGlobalNav]);
+  const signOutHandle = useCallback(
+    (e: any) => {
+      e.stopPropagation();
+      localStorage.removeItem("cart");
+
+      signOut();
+    },
+    [signOut]
+  );
+
   // console.log(animate1, "animate1");
   return (
     <div
@@ -136,7 +146,7 @@ function MobileNavBar() {
                   </Link>
                   <div
                     className="flex border-b-2 border-r-2 w-1/3 justify-between p-2 items-center"
-                    onClick={() => signOut()}
+                    onClick={signOutHandle}
                   >
                     <h1>Sign Out</h1>
                     <div>
