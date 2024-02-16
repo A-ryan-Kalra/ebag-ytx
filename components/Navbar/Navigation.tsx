@@ -200,14 +200,12 @@ function Navigation() {
               width={15}
             />
           </div>
-          <input
-            // placeholder="Find products..."
+          <h1
             ref={refe}
-            value={"Find products..."}
-            onChange={() => {}}
-            // disabled={true}
             className="rounded-full text-[14px] outline-none w-full font-semibold px-3 bg-transparent  "
-          ></input>
+          >
+            Find products...
+          </h1>
         </Link>
       </div>
     </nav>
