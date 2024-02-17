@@ -34,21 +34,21 @@ function CartItem({ item, handle }: cartItem) {
   }, [orderedCarts, cartItemMutate]);
 
   const [cartq, setCartQ] = useAtom(flagCart);
-
+  console.log(isValidating, "isValidating");
   const handleCartStatus = useCallback(
     async (str?: string) => {
       try {
         if (str === "minus") {
           if (item.quantity > 1) {
-            if (!isValidating) {
-              setLoad(true);
-              const res = await axios.put(`/api/cartstatus/${item?.id}`, {
-                status: str,
-              });
-              cartItemMutate();
-              localStorage.setItem("cart", `${cartq - 1}`);
-              setCartQ((prev) => prev - 1);
-            }
+            // if (!isValidating) {
+            setLoad(true);
+            const res = await axios.put(`/api/cartstatus/${item?.id}`, {
+              status: str,
+            });
+            cartItemMutate();
+            localStorage.setItem("cart", `${cartq - 1}`);
+            setCartQ((prev) => prev - 1);
+            // }
             return 0;
           }
         } else {
