@@ -34,7 +34,8 @@ function CartItem({ item, handle }: cartItem) {
   }, [orderedCarts, cartItemMutate]);
 
   const [cartq, setCartQ] = useAtom(flagCart);
-  console.log(isValidating, "isValidating");
+  // console.log(isValidating, "isValidating");
+
   const handleCartStatus = useCallback(
     async (str?: string) => {
       try {
@@ -42,24 +43,26 @@ function CartItem({ item, handle }: cartItem) {
           if (item.quantity > 1) {
             // if (!isValidating) {
             setLoad(true);
+            setCartQ((prev) => prev - 1);
+
             const res = await axios.put(`/api/cartstatus/${item?.id}`, {
               status: str,
             });
-            cartItemMutate();
+
             localStorage.setItem("cart", `${cartq - 1}`);
-            setCartQ((prev) => prev - 1);
+            cartItemMutate();
             // }
             return 0;
           }
         } else {
           setLoad(true);
+          setCartQ((prev) => prev + 1);
 
           const res = await axios.put(`/api/cartstatus/${item?.id}`, {
             status: str,
           });
 
           localStorage.setItem("cart", `${cartq + 1}`);
-          setCartQ((prev) => prev + 1);
           cartItemMutate();
         }
       } catch (error) {
@@ -88,7 +91,15 @@ function CartItem({ item, handle }: cartItem) {
       console.error(error);
     }
     cartItemMutate();
-  }, [item, setCartQ, cartItemMutate, setClose]);
+  }, [
+    item.quantity,
+    item?.id,
+    item?.quantity,
+    setCartQ,
+    cartq,
+    cartItemMutate,
+    setClose,
+  ]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
