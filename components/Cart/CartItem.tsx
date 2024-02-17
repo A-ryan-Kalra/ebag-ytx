@@ -99,7 +99,7 @@ function CartItem({ item, handle }: cartItem) {
 
   if (loadScreen) {
     return (
-      <div className=" relative min-h-full flex items-center bg-opacity-50 justify-center bg-white z-[100] w-full">
+      <div className=" relative min-h-full flex items-center bg-opacity-50 justify-center bg-white z-[110] w-full">
         <ClipLoader
           size={40}
           color="#32b79c"
@@ -138,7 +138,7 @@ function CartItem({ item, handle }: cartItem) {
         </div>
         <div className="flex items-center border-2 gap-3  w-fit">
           <button
-            disabled={isValidating || load || close}
+            disabled={load}
             className=" disabled:cursor-default"
             onClick={() => handleCartStatus("minus")}
           >
@@ -164,7 +164,7 @@ function CartItem({ item, handle }: cartItem) {
           )}
 
           <button
-            disabled={isValidating || load || close}
+            disabled={load}
             className=" disabled:cursor-default"
             onClick={() => handleCartStatus("plus")}
           >
