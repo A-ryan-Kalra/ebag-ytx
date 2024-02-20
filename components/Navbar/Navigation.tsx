@@ -57,6 +57,7 @@ function Navigation() {
         // console.log(updatedCart, "updatedCart");
       } else {
         if (updatedCart !== cartQuant) {
+          console.log(updatedCart, "<=updatedCart", cartQuant, "<=cartQuant");
           setCartQ(updatedCart);
           localStorage.setItem("cart", updatedCart as unknown as string);
         }
@@ -64,7 +65,7 @@ function Navigation() {
     }, 2500);
 
     return () => clearTimeout(timer);
-  }, [orderedCarts]);
+  }, [orderedCarts.length >= 0]);
 
   useEffect(() => {
     // setCartQuant(cartQuant1);
