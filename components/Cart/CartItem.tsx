@@ -84,13 +84,13 @@ function CartItem({ item, handle }: cartItem) {
   const handleDelete = useCallback(async () => {
     setClose(true);
     try {
+      setCartQ((prev) => prev - item?.quantity);
       const result = await axios.delete(`/api/cartstatus?orderId=${item?.id}`);
       localStorage.setItem("cart", `${cartq - item?.quantity}`);
-      setCartQ((prev) => prev - item?.quantity);
+      cartItemMutate();
     } catch (error) {
       console.error(error);
     }
-    cartItemMutate();
   }, [
     item.quantity,
     item?.id,

@@ -49,7 +49,7 @@ function Cart() {
     // localStorage.setItem("cart", cartq.toString());
   }, [cartItems, cartq]);
 
-  // console.log(orderedCarts);
+  console.log(cartItems);
 
   useEffect(() => {
     user?.address?.forEach((i: any) => setDelivery(i));
@@ -118,7 +118,7 @@ function Cart() {
                   />{" "}
                   <span className=" inline-block">{cartq}</span>
                 </div>
-                {cartItems?.length == 0 || cartItems === undefined ? (
+                {cartItems?.length == 0 || cartItems?.length === undefined ? (
                   <h1 className="text-[13px] text-center">
                     You're <span className="font-bold">₹500</span> away from
                     free shipping!
