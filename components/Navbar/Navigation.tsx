@@ -54,7 +54,7 @@ function Navigation() {
           setCartQ(updatedCart);
           localStorage.setItem("cart", updatedCart as unknown as string);
         }
-        // console.log(updatedCart, "updatedCart");
+        console.log(updatedCart, "updatedCart");
       } else {
         if (updatedCart !== cartQuant) {
           console.log(updatedCart, "<=updatedCart", cartQuant, "<=cartQuant");
@@ -65,7 +65,7 @@ function Navigation() {
     }, 2500);
 
     return () => clearTimeout(timer);
-  }, [orderedCarts.length >= 0]);
+  }, [orderedCarts?.length >= 0]);
 
   useEffect(() => {
     // setCartQuant(cartQuant1);
