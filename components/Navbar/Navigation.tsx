@@ -62,10 +62,10 @@ function Navigation() {
           localStorage.setItem("cart", updatedCart as unknown as string);
         }
       }
-    }, 2500);
+    }, 4000);
 
     return () => clearTimeout(timer);
-  }, [orderedCarts?.length >= 0]);
+  }, [orderedCarts?.length]);
 
   useEffect(() => {
     // setCartQuant(cartQuant1);
