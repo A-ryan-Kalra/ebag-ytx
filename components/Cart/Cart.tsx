@@ -9,7 +9,6 @@ import { flagCart } from "../Products/ProductsInformation";
 import useGetCart from "@/hooks/useGetCarts";
 import CartItem from "./CartItem";
 import useGetUser from "@/hooks/useGetUser";
-import useGetAddress from "@/hooks/useGetAddress";
 import Link from "next/link";
 import Button from "./Button";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -119,7 +118,7 @@ function Cart() {
                   />{" "}
                   <span className=" inline-block">{cartq}</span>
                 </div>
-                {cartItems?.length == 0 || cartItems?.length === undefined ? (
+                {cartItems?.length == 0 || cartItems === undefined ? (
                   <h1 className="text-[13px] text-center">
                     You're <span className="font-bold">₹500</span> away from
                     free shipping!
@@ -175,7 +174,7 @@ function Cart() {
               </div>
             )}
           </div>
-          {loadScreen && orderedCarts.length === 0 && (
+          {loadScreen && orderedCarts?.length === 0 && (
             <div className=" absolute top-[72px] min-h-[70vh] flex items-center  justify-center bg-white z-[100] w-full">
               <ClipLoader
                 size={50}
