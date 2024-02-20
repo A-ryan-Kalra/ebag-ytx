@@ -61,7 +61,7 @@ function Navigation() {
           localStorage.setItem("cart", updatedCart as unknown as string);
         }
       }
-    }, 1000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, [orderedCarts]);
