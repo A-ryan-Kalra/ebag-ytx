@@ -54,18 +54,16 @@ function Navigation() {
           setCartQ(updatedCart);
           localStorage.setItem("cart", updatedCart as unknown as string);
         }
-        console.log(updatedCart, "updatedCart");
       } else {
         if (updatedCart !== cartQuant) {
-          console.log(updatedCart, "<=updatedCart", cartQuant, "<=cartQuant");
           setCartQ(updatedCart);
           localStorage.setItem("cart", updatedCart as unknown as string);
         }
       }
-    }, 4000);
+    }, 3000);
 
     return () => clearTimeout(timer);
-  }, [orderedCarts?.length, cartQuant]);
+  }, [orderedCarts?.length, cartQuant, cartItemMutate]);
 
   useEffect(() => {
     // setCartQuant(cartQuant1);
