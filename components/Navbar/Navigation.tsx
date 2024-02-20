@@ -46,6 +46,27 @@ function Navigation() {
   });
   // console.log(session);
   useEffect(() => {
+    const timer = setTimeout(() => {
+      let updatedCart = 0;
+      if (orderedCarts?.length > 0) {
+        orderedCarts?.forEach((i: any) => (updatedCart += i?.quantity));
+        if (updatedCart !== cartQuant) {
+          setCartQ(updatedCart);
+          localStorage.setItem("cart", updatedCart as unknown as string);
+        }
+        // console.log(updatedCart, "updatedCart");
+      } else {
+        if (updatedCart !== cartQuant) {
+          setCartQ(updatedCart);
+          localStorage.setItem("cart", updatedCart as unknown as string);
+        }
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [orderedCarts]);
+
+  useEffect(() => {
     // setCartQuant(cartQuant1);
     const timer = setTimeout(() => {
       const cartQuant1 = Number(localStorage.getItem("cart"));
@@ -54,7 +75,7 @@ function Navigation() {
       } else {
         setCartQ(cartq1);
       }
-    }, 300);
+    }, 100);
     return () => clearTimeout(timer);
   }, [cartQuant, cartq1]);
 

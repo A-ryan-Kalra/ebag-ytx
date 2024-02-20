@@ -49,8 +49,6 @@ function Cart() {
     // localStorage.setItem("cart", cartq.toString());
   }, [cartItems, cartq]);
 
-  console.log(cartItems);
-
   useEffect(() => {
     user?.address?.forEach((i: any) => setDelivery(i));
   }, [user]);
