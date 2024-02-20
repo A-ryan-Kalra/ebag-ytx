@@ -65,7 +65,7 @@ function Navigation() {
     }, 4000);
 
     return () => clearTimeout(timer);
-  }, [orderedCarts?.length, cartQuant]);
+  }, [orderedCarts?.length, cartq]);
 
   useEffect(() => {
     // setCartQuant(cartQuant1);
