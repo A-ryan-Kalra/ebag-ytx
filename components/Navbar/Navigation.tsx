@@ -50,14 +50,11 @@ function Navigation() {
     cartItems?.forEach((i: any) => (updatedCart += i?.quantity));
     const timer = setTimeout(() => {
       if (updatedCart > 0) {
-        console.log(updatedCart, "if");
         if (updatedCart !== cartQuant) {
           setCartQ(updatedCart);
           localStorage.setItem("cart", updatedCart as unknown as string);
         }
       } else {
-        console.log(updatedCart, "else");
-
         setCartQ(updatedCart);
         localStorage.setItem("cart", updatedCart as unknown as string);
       }
