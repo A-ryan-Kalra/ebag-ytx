@@ -35,6 +35,7 @@ function Navigation() {
   const [cartq1, setCartQ1] = useState(0);
   const [cartItems, setCartItems] = useState<Array<Object>>();
   const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
+  const [updatedCart, setUpdatedCart] = useState(0);
 
   const [cartQuant, setCartQuant] = useState<number>(() => {
     try {
@@ -44,24 +45,24 @@ function Navigation() {
       return 0;
     }
   });
-  // console.log(session);
+
   useEffect(() => {
-    let updatedCart = 0;
-    cartItems?.forEach((i: any) => (updatedCart += i?.quantity));
+    let updatedCar = 0;
+    updatedCar = updatedCart;
     const timer = setTimeout(() => {
-      if (updatedCart > 0) {
-        if (updatedCart !== cartQuant) {
-          setCartQ(updatedCart);
-          localStorage.setItem("cart", updatedCart as unknown as string);
+      if (updatedCar > 0) {
+        if (updatedCar !== cartQuant) {
+          setCartQ(updatedCar);
+          localStorage.setItem("cart", updatedCar as unknown as string);
         }
       } else {
-        setCartQ(updatedCart);
-        localStorage.setItem("cart", updatedCart as unknown as string);
+        setCartQ(updatedCar);
+        localStorage.setItem("cart", updatedCar as unknown as string);
       }
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [cartItems, cartQuant, cartItemMutate]);
+  }, [cartQuant, updatedCart]);
 
   useEffect(() => {
     // setCartQuant(cartQuant1);
@@ -79,6 +80,9 @@ function Navigation() {
   useEffect(() => {
     setCartQ1(0);
     cartItems?.forEach((i: any) => setCartQ1((prev) => prev + i.quantity));
+    let updatedCar = 0;
+    cartItems?.forEach((i: any) => (updatedCar += i?.quantity));
+    setUpdatedCart(updatedCar);
     // localStorage.setItem("cart", cartq.toString());
   }, [cartItems]);
 
