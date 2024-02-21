@@ -34,7 +34,11 @@ function Navigation() {
   const [cartq, setCartQ] = useAtom(flagCart);
   const [cartq1, setCartQ1] = useState(0);
   const [cartItems, setCartItems] = useState<Array<Object>>();
-  const { data: orderedCarts, mutate: cartItemMutate } = useGetCart();
+  const {
+    data: orderedCarts,
+    mutate: cartItemMutate,
+    isValidating,
+  } = useGetCart();
   const [updatedCart, setUpdatedCart] = useState(0);
 
   const [cartQuant, setCartQuant] = useState<number>(() => {
@@ -47,22 +51,24 @@ function Navigation() {
   });
 
   useEffect(() => {
-    let updatedCar = 0;
-    updatedCar = updatedCart;
-    const timer = setTimeout(() => {
-      if (updatedCar > 0) {
-        if (updatedCar !== cartQuant) {
+    if (!isValidating) {
+      let updatedCar = 0;
+      updatedCar = updatedCart;
+      const timer = setTimeout(() => {
+        if (updatedCar > 0) {
+          if (updatedCar !== cartQuant) {
+            setCartQ(updatedCar);
+            localStorage.setItem("cart", updatedCar as unknown as string);
+          }
+        } else {
           setCartQ(updatedCar);
           localStorage.setItem("cart", updatedCar as unknown as string);
         }
-      } else {
-        setCartQ(updatedCar);
-        localStorage.setItem("cart", updatedCar as unknown as string);
-      }
-    }, 3000);
+      }, 600);
 
-    return () => clearTimeout(timer);
-  }, [cartQuant, updatedCart]);
+      return () => clearTimeout(timer);
+    }
+  }, [cartQuant, updatedCart, isValidating]);
 
   useEffect(() => {
     // setCartQuant(cartQuant1);
