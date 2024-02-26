@@ -4,6 +4,8 @@ import { IM_Fell_French_Canon_SC } from "next/font/google";
 import useGetAllCollectionItems from "@/hooks/useGetAllCollectionItems";
 import { useRouter } from "next/router";
 import TagName from "./TagName";
+import { useAtom } from "jotai";
+import { dataLoaded } from "@/pages/collections/[id]";
 
 const inter = IM_Fell_French_Canon_SC({ subsets: ["latin"], weight: "400" });
 
@@ -14,6 +16,7 @@ function Sidebar() {
   const { data, error, isLoading, mutate } = useGetAllCollectionItems();
   const [tag, setTag] = useState("");
   const memoizedData = useMemo(() => data, [data, id]);
+  const [dataLoad, setDataLoaded] = useAtom(dataLoaded);
 
   useMemo(() => {
     setCategory(memoizedData);
@@ -35,7 +38,7 @@ function Sidebar() {
         </Link>
         {" /"}
         <h1 className={`${inter.className} capitalize text-4xl`}>
-          {id === "all" ? "All" : id}
+          {id === "all" ? "All" : dataLoad ? id : "None"}
         </h1>
       </div>
       <div className="  space-x-3 py-3  flex flex-wrap">

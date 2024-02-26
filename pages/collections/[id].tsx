@@ -17,6 +17,7 @@ import { HashLoader } from "react-spinners";
 const inter = IM_Fell_French_Canon_SC({ subsets: ["latin"], weight: "400" });
 
 export const filter1 = atom(false);
+export const dataLoaded = atom(false);
 
 function Collection() {
   const router = useRouter();
@@ -27,6 +28,7 @@ function Collection() {
   );
   const [images, setImg] = useState<Array<Object>>();
   const [filterImg, setFilterImg] = useAtom(filter1);
+  const [dataLoad, setDataLoaded] = useAtom(dataLoaded);
   const seacrh = useSearchParams();
 
   const page = seacrh.get("page") ?? "1";
@@ -41,15 +43,22 @@ function Collection() {
     }
   }, [id]);
 
-  // useEffect(() => {
-  //   setImg(data?.slice(start, end));
-  // }, [data, start, end]);
+  useEffect(() => {
+    setImg(data?.slice(start, end));
+  }, [data, start, end]);
 
-  const memoizedData = useMemo(() => data, [category, data]);
+  useEffect(() => {
+    if (images?.length !== 0 && images !== undefined) {
+      setDataLoaded(true);
+    } else {
+      setDataLoaded(false);
+    }
+  }, [images, mutate]);
+  // const memoizedData = useMemo(() => data, [category, data]);
 
-  useMemo(() => {
-    setImg(memoizedData?.slice(start, end));
-  }, [memoizedData, category, start, end]);
+  // useMemo(() => {
+  //   setImg(memoizedData?.slice(start, end));
+  // }, [memoizedData, category, start, end]);
   // useEffect(() => {
   //   setImg(images?.slice(start, end));
   // }, [page, per_page]);
