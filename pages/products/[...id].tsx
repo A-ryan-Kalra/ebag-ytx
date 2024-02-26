@@ -5,6 +5,7 @@ import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { HashLoader } from "react-spinners";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 interface ImagesProps {
@@ -16,7 +17,7 @@ function Index({ initialData }: ImagesProps) {
   const router = useRouter();
   const { id } = router.query;
 
-  const [item, setItem] = useState<{ [key: string]: any }>();
+  const [item, setItem] = useState<{ [key: string]: any }>({});
   const { data, error, isLoading, mutate, isValidating } = useGetProducts(
     id?.[0] as string,
     id?.[1] as string
@@ -35,15 +36,29 @@ function Index({ initialData }: ImagesProps) {
   //     item?.title.includes("frock gold printed")
   //   );
   // });
+  // console.log(Object?.keys(item).length);
   // console.log(item);
   // console.log("item");
 
   return (
     <div className="min-h-screen  max-w-[1620px] mx-auto">
-      {!isLoading ? (
+      {!isLoading && Object?.keys(item).length !== 0 ? (
         <div className="flex  lg:flex-row max-lg:gap-4 flex-col w-full py-12 px-3">
           <Products item={item?.images} name={item?.name} title={item?.title} />
           <ProductsInformation item={item} />
+        </div>
+      ) : Object?.keys(item).length === 0 && !isLoading ? (
+        <div className="min-h-[50vh] px-10 gap-3 justify-center flex flex-col items-center relative ">
+          <h1 className="text-3xl font-semibold">
+            Uh-Oh, Nothing To See Here!
+          </h1>
+          <h1 className="font-mono">
+            The page you requested doesn&apos;t exist. Please try a different
+            direction.
+          </h1>
+          <div className="my-10">
+            <HashLoader size={60} color="#36d7b7" />
+          </div>
         </div>
       ) : (
         <div className="flex  justify-center items-center relative min-h-[80vh]">

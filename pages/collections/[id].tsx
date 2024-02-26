@@ -11,6 +11,8 @@ import { atom, useAtom } from "jotai";
 import { useSearchParams } from "next/navigation";
 import PagePagination from "@/components/Collections/PagePagination";
 import ScaleLoader from "react-spinners/ScaleLoader";
+import MiddleSection from "@/components/MiddleSection";
+import { HashLoader } from "react-spinners";
 
 const inter = IM_Fell_French_Canon_SC({ subsets: ["latin"], weight: "400" });
 
@@ -20,7 +22,9 @@ function Collection() {
   const router = useRouter();
   const { id } = router.query;
   const [category, setCategory] = useState<string>();
-  const { data, mutate, isLoading } = useGetCollectionItems(category as string);
+  const { data, mutate, isLoading, error } = useGetCollectionItems(
+    category as string
+  );
   const [images, setImg] = useState<Array<Object>>();
   const [filterImg, setFilterImg] = useAtom(filter1);
   const seacrh = useSearchParams();
@@ -57,7 +61,7 @@ function Collection() {
   return (
     <>
       <Layout>
-        {!isLoading ? (
+        {!isLoading && images?.length !== 0 ? (
           <div className="my-16 flex flex-col gap-3">
             <div className="  flex px-5 lg:hidden justify-between items-center">
               <div className=" w-full">
@@ -97,6 +101,19 @@ function Collection() {
               hasNextPage={end < data?.length}
               hasPrevPage={start > 0}
             />
+          </div>
+        ) : images?.length === 0 && !isLoading ? (
+          <div className="min-h-[50vh] px-10 gap-3 justify-center flex flex-col items-center relative ">
+            <h1 className="text-3xl font-semibold">
+              Uh-Oh, Nothing To See Here!
+            </h1>
+            <h1 className="font-mono">
+              The page you requested doesn&apos;t exist. Please try a different
+              direction.
+            </h1>
+            <div className="my-10">
+              <HashLoader size={60} color="#36d7b7" />
+            </div>
           </div>
         ) : (
           <div className="min-h-[80vh] flex items-center relative  ">
