@@ -88,7 +88,7 @@ function Cart() {
 
   return (
     <div
-      className={` bg-[#434A4F]/90 overflow-auto fixed inset-0 z-[200] min-h-full `}
+      className={` bg-[#434A4F]/90 overflow-auto overflow-x-hidden fixed inset-0 z-[200] min-h-full `}
       onClick={handle}
     >
       <div

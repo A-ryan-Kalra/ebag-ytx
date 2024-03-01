@@ -4,8 +4,11 @@ export function hideScrollbar() {
     const style = document.createElement("style");
     style.innerHTML = `
             /* Hide scrollbar for Chrome, Safari and Opera */
-            ::-webkit-scrollbar {
-                display: none;
+            // ::-webkit-scrollbar {
+            //     display: none;
+            // }
+             body{
+              overflow: hidden;
             }
         `;
     style.classList.add("check");
