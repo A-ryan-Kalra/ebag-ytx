@@ -20,31 +20,37 @@ export default async function handler(
         },
       });
 
-      let result = [];
+      let result: [] = [];
 
       if (
         currentUsersOrder.length !== 0 &&
         currentUsersOrder.some((i: any) => i.title === title)
       ) {
-        result = await prismadb.orders.findUnique({
+        const orderToUpdate = await prismadb.orders.findFirst({
           where: {
-            title: title,
+            userId: currentUser.id,
+            title,
           },
         });
-        if (!result) {
+        let updatedOrder;
+
+        if (orderToUpdate) {
+          orderToUpdate.quantity = orderToUpdate.quantity + 1;
+
+          updatedOrder = await prismadb.orders.update({
+            where: {
+              id: orderToUpdate.id,
+            },
+            data: {
+              quantity: orderToUpdate.quantity,
+            },
+          });
+        } else {
           console.error("Order not found");
           res.status(409).end();
         }
-        result.quantity = result.quantity + 1;
-        const updateOrder = await prismadb.orders.update({
-          where: {
-            title: title,
-          },
-          data: {
-            quantity: result.quantity,
-          },
-        });
-        return res.status(200).json(updateOrder);
+
+        return res.status(200).json(updatedOrder);
       } else {
         result = await prismadb.orders.create({
           data: {

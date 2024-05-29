@@ -41,7 +41,7 @@ model User{
 
 model Orders{
   id          String    @id @default(cuid())
-  title       String?   @unique
+  title       String?   
   description String?
   price       Float?
   stock Int?
