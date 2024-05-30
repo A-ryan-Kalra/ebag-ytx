@@ -54,7 +54,7 @@ function address() {
         mutate();
       } catch (error) {
         console.error(error);
-        toast.success("Something went wrong");
+        toast.error("Something went wrong");
       }
     },
     [building, area, zipcode, country, data?.id, mutate]
