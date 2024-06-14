@@ -25,11 +25,7 @@ export default function App({
           name="description"
           content="Ebag provides e-commerce services, offering a range of products."
         />
-        <link
-          rel="icon"
-          type="image/png"
-          href="/icons/android-chrome-192x192.png"
-        />
+        <link rel="icon" type="image/webp" href="/ebag.webp" />
         <link rel="apple-touch-icon" href="/icons/android-chrome-192x192.png" />
         <meta name="theme-color" content="#7BE1C8" />
         <link rel="shortcut icon" href="/icons/android-chrome-192x192.png" />
