@@ -6,6 +6,12 @@
 </ul>
 </br>
 
+> [!CAUTION]
+> Sorry for the inconvenience. However, the images are no longer maintained on the DummyJSON server. If you come across any images issue while exploring my project, please feel free to ignore them or you can check out my latest project.
+
+
+</br>
+
 <h1>Features</h1>
 
 <h3>Note</h3>
